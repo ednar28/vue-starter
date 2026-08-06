@@ -1,0 +1,19 @@
+input,
+textarea,
+select {
+  @apply outline-none focus:outline-none;
+}
+
+.form-input {
+  @apply block w-full rounded-md border p-2 text-sm;
+  @apply bg-white focus:border-primary;
+  @apply disabled:cursor-not-allowed disabled:bg-opacity-50;
+
+  textarea& {
+    @apply pb-4;
+  }
+}
+
+.form-label {
+  @apply block text-left text-sm font-medium leading-7;
+}

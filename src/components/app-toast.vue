@@ -1,0 +1,34 @@
+<script setup lang="ts">
+  import { useToastStore } from '@/stores/toast'
+
+  const toast = useToastStore()
+</script>
+
+<template>
+  <div class="toast-wrapper">
+    <transition-group name="toast">
+      <div
+        v-for="item in toast.items"
+        :key="item.id"
+        class="toast-items">
+        {{ item.message }}
+      </div>
+    </transition-group>
+  </div>
+</template>
+
+<style lang="postcss" scoped>
+  .toast-wrapper {
+    @apply pointer-events-none fixed inset-x-0 bottom-12 z-50 flex flex-col;
+  }
+  .toast-items {
+    @apply mx-auto mb-2 max-w-xs rounded px-2 py-1 text-center text-xs text-white;
+    @apply bg-black bg-opacity-75;
+    @apply transition-all duration-700 ease-in-out;
+  }
+
+  .toast-enter-from,
+  .toast-leave-to {
+    opacity: 0;
+  }
+</style>

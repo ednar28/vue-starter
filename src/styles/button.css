@@ -1,0 +1,36 @@
+.btn {
+  @apply rounded-lg px-3.5 py-2.5 text-center text-xs font-bold shadow-xs;
+  @apply tracking-tight transition-all ease-in;
+  @apply hover:-translate-y-px hover:shadow-md active:opacity-85;
+}
+
+.btn-icon {
+  @apply rounded-lg p-2 leading-normal shadow-md;
+  @apply tracking-tight transition-all ease-in;
+  @apply hover:-translate-y-px hover:shadow-md active:opacity-85;
+  @apply flex items-center justify-center;
+
+  .icon {
+    @apply size-3.5;
+  }
+}
+
+.btn-primary {
+  @apply bg-primary text-white disabled:cursor-not-allowed disabled:bg-gray-600;
+}
+
+.btn-info {
+  @apply border border-gray-800 text-gray-800 bg-white disabled:cursor-not-allowed disabled:border-gray-400 disabled:bg-transparent disabled:text-gray-400;
+}
+
+.btn-success {
+  @apply bg-green-500 text-white disabled:cursor-not-allowed disabled:bg-gray-600;
+}
+
+.btn-secondary {
+  @apply bg-secondary text-white disabled:cursor-not-allowed disabled:bg-gray-600;
+}
+
+.btn-danger {
+  @apply bg-danger-500 text-white disabled:cursor-not-allowed disabled:bg-gray-600;
+}

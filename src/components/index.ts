@@ -1,0 +1,42 @@
+import type { App } from 'vue'
+import AppAnimatedDot from './app-animated-dot.vue'
+import AppBadge from './app-badge.vue'
+import AppCard from './app-card.vue'
+import AppIcon from './app-icon.vue'
+import AppImg from './app-img.vue'
+import AppPreviewHtml from './app-preview-html.vue'
+import { useButton } from './button'
+import { useDoc } from './docs'
+import { useInput } from './input'
+import useModal from './modal'
+import { useTab } from './tab/index.ts'
+import { useTable } from './table/index.ts'
+
+export default {
+  install (app: App) {
+    app.use(useDoc)
+    app.use(useModal)
+    app.use(useInput)
+    app.use(useButton)
+    app.use(useTab)
+    app.use(useTable)
+
+    app.component('AppCard', AppCard)
+    app.component('AppBadge', AppBadge)
+    app.component('AppAnimatedDot', AppAnimatedDot)
+    app.component('AppImg', AppImg)
+    app.component('AppPreviewHtml', AppPreviewHtml)
+    app.component('AppIcon', AppIcon)
+  },
+}
+
+declare module '@vue/runtime-core' {
+  export interface GlobalComponents {
+    AppCard: typeof AppCard,
+    AppBadge: typeof AppBadge,
+    AppAnimatedDot: typeof AppAnimatedDot,
+    AppImg: typeof AppImg,
+    AppPreviewHtml: typeof AppPreviewHtml,
+    AppIcon: typeof AppIcon,
+  }
+}

@@ -44,14 +44,16 @@
             class="h-4 w-4" />
           Lihat Dokumentasi
         </router-link>
-        <router-link
-          to="/documentation/button"
+        <a
+          href="https://github.com/ednar28/vue-starter"
+          target="_blank"
+          rel="noopener"
           class="btn inline-flex items-center gap-2 border border-gray-200 bg-white px-6 py-3 text-sm text-gray-700 shadow-sm hover:border-gray-300 hover:shadow-md hover:-translate-y-px">
           <app-icon
-            icon="lucide:mouse-pointer-click"
+            icon="lucide:github"
             class="h-4 w-4" />
-          Jelajahi Komponen
-        </router-link>
+          GitHub
+        </a>
       </div>
 
       <div class="fade-up mt-16 border-t border-gray-100 pt-8 delay-5">
@@ -98,6 +100,18 @@
         </div>
       </div>
     </div>
+  </div>
+  <div class="mt-8">
+    <a
+      href="https://github.com/ednar28/vue-starter"
+      class="inline-flex items-center gap-2 text-xs text-gray-400 underline hover:text-primary"
+      target="_blank"
+      rel="noopener">
+      <app-icon
+        icon="lucide:github"
+        class="h-4 w-4" />
+      Lihat repositori GitHub
+    </a>
   </div>
 </template>
 

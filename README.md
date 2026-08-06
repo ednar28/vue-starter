@@ -34,6 +34,20 @@ TypeScript cannot handle type information for `.vue` imports by default, so we r
 
 See [Vite Configuration Reference](https://vitejs.dev/config/).
 
+## Getting Started
+
+### Install Dependencies
+
+```sh
+bun install
+```
+
+### Run Development Server
+
+```sh
+bun run dev
+```
+
 ## Scripts
 
 Below are the scripts which are available via `npm run`.

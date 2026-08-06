@@ -101,18 +101,6 @@
       </div>
     </div>
   </div>
-  <div class="mt-8">
-    <a
-      href="https://github.com/ednar28/vue-starter"
-      class="inline-flex items-center gap-2 text-xs text-gray-400 underline hover:text-primary"
-      target="_blank"
-      rel="noopener">
-      <app-icon
-        icon="lucide:github"
-        class="h-4 w-4" />
-      Lihat repositori GitHub
-    </a>
-  </div>
 </template>
 
 <style scoped>

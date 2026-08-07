@@ -3,6 +3,7 @@ export default {
   category: 'Components',
   items: [
     { label: 'Badge', path: { name: 'documentation-badge' } },
+    { label: 'Breadcrumb', path: { name: 'documentation-breadcrumb' } },
     { label: 'Button', path: { name: 'documentation-button' } },
     { label: 'Card', path: { name: 'documentation-card' } },
     { label: 'Icon', path: { name: 'documentation-icon' } },

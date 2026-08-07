@@ -84,6 +84,7 @@
             type="button"
             class="inline-flex items-center justify-center border border-gray-200 rounded-full p-2 shadow-sm transition !bg-white hover:!bg-gray-100"
             :class="activeTheme === 'dark' ? 'bg-gray-100 text-indigo-500' : 'text-amber-500'"
+            disabled
             @click="activeTheme = activeTheme === 'dark' ? 'light' : 'dark'">
             <app-icon
               :icon="activeTheme === 'dark' ? 'lucide:moon' : 'lucide:sun'"

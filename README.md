@@ -28,7 +28,7 @@ TypeScript cannot handle type information for `.vue` imports by default, so we r
 - [@stylistic/eslint-plugin](https://github.com/eslint-stylistic/eslint-stylistic)
 
 ## Dokumentasi UI
-- [Page Documentation](./docs/page-documentation.md)
+- [Page Documentation](https://vue-starter.rizkyputraednar.my.id)
 
 ## Customize configuration
 

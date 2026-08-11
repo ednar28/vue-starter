@@ -42,6 +42,7 @@
         <input
           ref="appInputImageRef"
           type="file"
+          accept="image/*"
           hidden
           @change="onChange">
 

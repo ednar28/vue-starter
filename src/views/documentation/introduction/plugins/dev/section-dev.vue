@@ -1,5 +1,4 @@
 <script setup lang="ts">
-  import ComponentPlugin from '../component-plugin.vue'
   import PluginEslint from './plugin-eslint.vue'
   import PluginNpmRunAll from './plugin-npm-run-all.vue'
   import PluginTypescript from './plugin-typescript.vue'

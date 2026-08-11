@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  const props = defineProps<{
+  defineProps<{
     forId?: string,
     label?: string,
     required?: boolean,

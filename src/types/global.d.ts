@@ -30,4 +30,11 @@ declare global {
       [e: string]: string | null,
     },
   }
+
+  interface TabType {
+      label: string,
+      value: string,
+      icon?: string,
+      disabled?: boolean,
+    }
 }

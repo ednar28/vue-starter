@@ -9,8 +9,13 @@ const router = createRouter({
     ...appRoutes,
     ...documentationRoutes,
   ],
-  scrollBehavior () {
-    return { top: 0, behavior: 'smooth' }
+  scrollBehavior (to, from) {
+    if (to.path !== from.path) {
+      return {
+        top: 0,
+        behavior: 'smooth',
+      }
+    }
   },
 })
 

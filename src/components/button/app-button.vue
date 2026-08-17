@@ -6,16 +6,15 @@
   type ButtonType = 'button' | 'submit' | 'icon'
 
   interface Props {
-    to?: RouteLocationRaw,
-    loading?: boolean,
-    disabled?: boolean,
-    variant?: Variant,
-    type?: ButtonType,
+    to?: RouteLocationRaw
+    loading?: boolean
+    disabled?: boolean
+    variant?: Variant
+    type?: ButtonType
   }
 
   const props = withDefaults(defineProps<Props>(), {
     to: undefined,
-    class: undefined,
     variant: 'primary',
     type: 'button',
   })
@@ -35,12 +34,34 @@
     }
     return classes
   })
+
+  const isExternal = computed(() => {
+    return typeof props.to === 'string' &&
+      /^https?:\/\//.test(props.to)
+  })
+
+  const componentType = computed(() => {
+    if (props.disabled || props.loading) {
+      return 'button'
+    }
+
+    if (isExternal.value) {
+      return 'a'
+    }
+
+    if (props.to) {
+      return 'router-link'
+    }
+
+    return 'button'
+  })
 </script>
 
 <template>
   <component
-    :is="to && !(disabled || loading) ? 'router-link' : 'button'"
-    :to="to"
+    :is="componentType"
+    :to="!isExternal ? props.to : undefined"
+    :href="isExternal ? props.to : undefined"
     :type="htmlType"
     :class="buttonClass"
     :disabled="disabled || loading">

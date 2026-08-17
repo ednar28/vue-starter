@@ -1,13 +1,4 @@
 <script setup lang="ts">
-  const code = [
-    "variant?: 'primary' | 'success' | 'secondary' | 'danger' | 'info' // Default: 'primary'",
-    "type?: 'button' | 'submit' | 'icon' // Default: 'button'",
-    "htmlType?: 'button' | 'submit' | 'reset' // Untuk button html type, Default: 'button'",
-    'to?: RouteLocationRaw // Render sebagai router-link',
-    'loading?: boolean // Tampilkan animasi loading',
-    'disabled?: boolean // Disabled state',
-  ].join('\n')
-
   const rows = [
     { name: 'variant', type: 'string', desc: 'Varian warna tombol (primary | success | secondary | danger | info). Default: primary' },
     { name: 'type', type: 'string', desc: 'Tipe tombol (button | submit | icon). Default: button. Tipe icon akan menggunakan class btn-icon' },
@@ -24,8 +15,7 @@
     hide-theme-toggle
     hide-window-chrome
     title="Props"
-    description=""
-    :code="code">
+    description="">
     <app-props-table :rows="rows" />
   </app-doc-section>
 </template>

@@ -1,8 +1,8 @@
 <script setup lang="ts">
-  import { ref } from 'vue'
+  import { computed, ref } from 'vue'
   import { useAppModal } from '@/components/modal'
 
-  const activeTab = ref(1)
+  const activeTab = ref('All')
   const { open: openModal, close: closeModal } = useAppModal('modal')
   const searchQuery = ref('')
 
@@ -20,13 +20,20 @@
     { key: 'lastActive', label: 'Terakhir Aktif', class: 'text-left' },
   ]
 
-  const tableRows = [
-    { name: 'Andi Pratama', role: 'Admin', status: 'Active', lastActive: '2 menit lalu' },
-    { name: 'Siti Nurhaliza', role: 'Editor', status: 'Active', lastActive: '15 menit lalu' },
-    { name: 'Budi Santoso', role: 'Author', status: 'Inactive', lastActive: '3 hari lalu' },
-    { name: 'Rina Wulandari', role: 'Viewer', status: 'Active', lastActive: '1 jam lalu' },
-    { name: 'Dedi Kurniawan', role: 'Admin', status: 'Active', lastActive: '5 menit lalu' },
-  ]
+  const tableRows = computed(() => {
+    return [
+      { name: 'Andi Pratama', role: 'Admin', status: 'Active', lastActive: '2 menit lalu' },
+      { name: 'Siti Nurhaliza', role: 'Editor', status: 'Active', lastActive: '15 menit lalu' },
+      { name: 'Budi Santoso', role: 'Author', status: 'Inactive', lastActive: '3 hari lalu' },
+      { name: 'Rina Wulandari', role: 'Viewer', status: 'Active', lastActive: '1 jam lalu' },
+      { name: 'Dedi Kurniawan', role: 'Admin', status: 'Active', lastActive: '5 menit lalu' },
+    ].filter(row => {
+      if (activeTab.value === 'All') return true
+      if (activeTab.value === 'Active') return row.status === 'Active'
+      if (activeTab.value === 'Inactive') return row.status === 'Inactive'
+      return true
+    })
+  })
 
   const recentActivities = [
     { user: 'Andi Pratama', action: 'Menambah produk baru', time: '2 menit lalu', icon: 'lucide:package-plus' },
@@ -39,6 +46,12 @@
     { label: 'Produk', value: '1,234', icon: 'lucide:box' },
     { label: 'Kategori', value: '48', icon: 'lucide:folder-tree' },
     { label: 'Tag', value: '156', icon: 'lucide:tags' },
+  ]
+  
+  const tabs = [
+    { value: 'All', label: 'Semua' },
+    { value: 'Active', label: 'Aktif' },
+    { value: 'Inactive', label: 'Nonaktif' }
   ]
 </script>
 
@@ -156,23 +169,7 @@
         <h2 class="text-xl font-semibold">
           Daftar Pengguna
         </h2>
-        <app-tab-group>
-          <app-tab
-            :active="activeTab === 1"
-            @click="activeTab = 1">
-            Semua
-          </app-tab>
-          <app-tab
-            :active="activeTab === 2"
-            @click="activeTab = 2">
-            Aktif
-          </app-tab>
-          <app-tab
-            :active="activeTab === 3"
-            @click="activeTab = 3">
-            Nonaktif
-          </app-tab>
-        </app-tab-group>
+        <app-tab v-model="activeTab" :tabs="tabs"/>
       </div>
 
       <app-card>

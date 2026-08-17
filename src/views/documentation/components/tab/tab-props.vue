@@ -1,25 +1,24 @@
 <script setup lang="ts">
-  const code = [
-    'active: boolean              // Status aktif tab',
-    'to?: RouteLocationRaw       // Render sebagai router-link',
-    'icon?: string               // Icon name (lucide:*)',
-  ].join('\n')
-
   const rows = [
     {
-      name: 'active',
+      name: 'tabs',
+      type: 'TabType[]',
+      desc: 'Daftar tab yang tersedia',
+    },
+    {
+      name: 'asRoute (opsional)',
       type: 'boolean',
-      desc: 'Menandakan tab sedang aktif. Akan menampilkan border bawah dengan warna primary',
+      desc: 'Menandakan tab sebagai router-link.',
     },
     {
-      name: 'to',
-      type: 'RouteLocationRaw',
-      desc: 'Render tab sebagai router-link. Berguna untuk navigasi antar halaman',
+      name: 'asParam (opsional)',
+      type: 'boolean',
+      desc: 'Menandakan tab sebagai parameter route.',
     },
     {
-      name: 'icon',
+      name: 'paramName (opsional)',
       type: 'string',
-      desc: 'Nama icon yang ditampilkan sebelum teks. Gunakan format lucide:*',
+      desc: 'Nama parameter yang digunakan sebagai query string ketika asParam diaktifkan.',
     },
   ]
 </script>
@@ -30,8 +29,7 @@
     hide-theme-toggle
     hide-window-chrome
     title="Props"
-    description=""
-    :code="code">
+    description="">
     <app-props-table :rows="rows" />
   </app-doc-section>
 </template>

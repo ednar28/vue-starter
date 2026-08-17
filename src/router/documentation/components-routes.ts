@@ -40,6 +40,23 @@ const componentsRoutes: RouteRecordRaw[] = [
     path: 'tab',
     name: 'documentation-tab',
     component: () => import('@/views/documentation/components/tab/page-tab.vue'),
+    children: [
+      {
+        path: 'beranda',
+        name: 'documentation-tab-beranda',
+        component: () => import('@/views/documentation/components/tab/page-tab.vue'),
+      },
+      {
+        path: 'profil',
+        name: 'documentation-tab-profil',
+        component: () => import('@/views/documentation/components/tab/page-tab.vue'),
+      },
+      {
+        path: 'pengaturan',
+        name: 'documentation-tab-pengaturan',
+        component: () => import('@/views/documentation/components/tab/page-tab.vue'),
+      },
+    ]
   },
   {
     path: 'badge',

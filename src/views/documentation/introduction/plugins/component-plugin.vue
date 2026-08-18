@@ -28,11 +28,11 @@
         </div>
       </div>
 
-      <div class="space-x-2 space-y-2">
+      <div class="flex flex-wrap gap-2">
         <div
           v-for="pkg in packages"
           :key="pkg"
-          class="inline-block rounded-lg bg-gray-100 px-2.5 py-1.5 text-[11px] text-gray-600 font-mono">
+          class="rounded-lg bg-gray-100 px-2.5 py-1.5 text-[11px] text-gray-600 font-mono">
           {{ pkg }}
         </div>
       </div>

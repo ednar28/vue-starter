@@ -1,10 +1,4 @@
 <script setup lang="ts">
-  const code = [
-    'label: string                           // teks badge',
-    "variant?: 'primary' | 'warning' | 'danger' | 'info' | 'success' // varian warna, default: primary",
-    'icon?: boolean                          // tampilkan icon dot',
-  ].join('\n')
-
   const propsRows = [
     {
       name: 'label',
@@ -30,8 +24,7 @@
     hide-theme-toggle
     hide-window-chrome
     title="Props"
-    description=""
-    :code="code">
+    description="">
     <app-props-table :rows="propsRows" />
   </app-doc-section>
 </template>

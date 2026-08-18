@@ -6,7 +6,7 @@
   const props = defineProps<{
     title: string,
     description?: string,
-    code: string,
+    code?: string,
     githubUrl?: string,
     hidePreviewToolbar?: boolean,
     hideThemeToggle?: boolean,
@@ -25,9 +25,11 @@
   })
 
   const copyCode = async () => {
-    copy(props.code)
-    copied.value = true
-    debounceCopiedReset()
+    if (props.code) {
+      copy(props.code)
+      copied.value = true
+      debounceCopiedReset()
+    }
   }
 </script>
 
@@ -94,35 +96,22 @@
       </div>
 
       <div class="px-5 py-6 sm:px-6">
-        <div
-          :class="[
-            'mx-auto overflow-hidden rounded-[22px] border shadow-sm transition-all duration-300',
-            activeDevice === 'desktop' ? 'max-w-4xl' : '',
-            activeDevice === 'tablet' ? 'max-w-md' : '',
-            activeDevice === 'mobile' ? 'max-w-sm' : '',
-            activeTheme === 'dark' ? 'bg-slate-950 text-slate-100 border-slate-800' : 'bg-white text-slate-900 border-gray-200'
-          ]">
-          <div
-            v-if="!props.hideWindowChrome"
-            class="flex items-center justify-between border-b px-4 py-3">
-            <div class="flex items-center gap-2">
-              <span class="h-2.5 w-2.5 rounded-full bg-rose-500"></span>
-              <span class="h-2.5 w-2.5 rounded-full bg-amber-500"></span>
-              <span class="h-2.5 w-2.5 rounded-full bg-emerald-500"></span>
-            </div>
-            <span class="rounded-full bg-slate-100 px-2.5 py-1 text-[11px] text-slate-500 font-semibold tracking-[0.24em] uppercase">
-              {{ themeLabel }} theme
-            </span>
-          </div>
-          <div
-            class="p-6"
-            :dir="activeDirection">
-            <slot></slot>
-          </div>
+        <app-window-block
+          v-if="!hideWindowChrome"
+          :label="themeLabel"
+          :active-device="activeDevice"
+          :active-theme="activeTheme"
+          :direction="activeDirection">
+          <slot></slot>
+        </app-window-block>
+        <div v-else>
+          <slot></slot>
         </div>
       </div>
 
-      <div class="border-t border-gray-100 bg-slate-50 px-5 py-6 sm:px-6">
+      <div
+        v-if="props.code"
+        class="border-t border-gray-100 bg-slate-50 px-5 py-6 sm:px-6">
         <div class="mb-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <p class="text-sm text-slate-900 font-semibold">

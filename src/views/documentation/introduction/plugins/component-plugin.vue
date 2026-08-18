@@ -28,7 +28,7 @@
         </div>
       </div>
 
-      <div class="space-y-2">
+      <div class="space-x-2 space-y-2">
         <div
           v-for="pkg in packages"
           :key="pkg"

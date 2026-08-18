@@ -4,6 +4,7 @@ import AppDocPageHeader from './app-doc-page-header.vue'
 import AppDocSection from './app-doc-section.vue'
 import AppPropsTable from './app-props-table.vue'
 import AppSlotsTable from './app-slots-table.vue'
+import AppWindowBlock from './app-window-block.vue'
 
 export const useDoc = {
   install (app: App) {
@@ -12,6 +13,7 @@ export const useDoc = {
     app.component('AppDocSection', AppDocSection)
     app.component('AppPropsTable', AppPropsTable)
     app.component('AppSlotsTable', AppSlotsTable)
+    app.component('AppWindowBlock', AppWindowBlock)
   },
 }
 
@@ -22,5 +24,6 @@ declare module '@vue/runtime-core' {
     AppDocSection: typeof AppDocSection,
     AppPropsTable: typeof AppPropsTable,
     AppSlotsTable: typeof AppSlotsTable,
+    AppWindowBlock: typeof AppWindowBlock,
   }
 }

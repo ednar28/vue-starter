@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import { useRoute, useRouter } from 'vue-router';
+  import { useRoute, useRouter } from 'vue-router'
 
   const props = defineProps<{
     tabs: TabType[],
@@ -16,13 +16,13 @@
     selectedTab.value = tab.value
 
     if (props.asParam && props.paramName) {
-    router.push({
-      query: {
-        ...route.query,
-        [props.paramName]: tab.value,
-      },
-    })
-  }
+      router.push({
+        query: {
+          ...route.query,
+          [props.paramName]: tab.value,
+        },
+      })
+    }
   }
 
   const initializeTab = () => {
@@ -36,7 +36,7 @@
       selectedTab.value =
         props.tabs.find(tab =>
           tab.value === route.path ||
-          tab.value === `/${lastPath}`
+          tab.value === `/${lastPath}`,
         )?.value ?? props.tabs[0].value
 
       return
@@ -44,7 +44,7 @@
 
     if (props.asParam && props.paramName) {
       const paramValue = route.query[props.paramName]
-      
+
       if (typeof paramValue === 'string') {
         selectedTab.value =
           props.tabs.find(tab => tab.value === paramValue)?.value
@@ -66,11 +66,11 @@
   <div class="flex">
     <template
       v-for="tab in props.tabs"
-      :key="tab.value" >
+      :key="tab.value">
       <slot
         name="tab"
         :tab="tab"
-        :selected="selectedTab === tab.value" >
+        :selected="selectedTab === tab.value">
         <app-tab-item
           :tab="tab"
           :active="selectedTab === tab.value"

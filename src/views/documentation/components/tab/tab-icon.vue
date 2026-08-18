@@ -12,7 +12,7 @@
   const tabs = [
     { value: 'beranda', label: 'Beranda', icon: 'lucide:home' },
     { value: 'profil', label: 'Profil', icon: 'lucide:user' },
-    { value: 'pengaturan', label: 'Pengaturan', icon: 'lucide:settings' }
+    { value: 'pengaturan', label: 'Pengaturan', icon: 'lucide:settings' },
   ]
 </script>
 
@@ -21,6 +21,6 @@
     title="Dengan Icon"
     description="Gunakan key icon pada tiap tab item untuk menambahkan icon sebelum label tab."
     :code="code">
-    <app-tab :tabs="tabs"/>
+    <app-tab :tabs="tabs" />
   </app-doc-section>
 </template>

@@ -1,7 +1,7 @@
 import type { App } from 'vue'
 import AppTab from './app-tab.vue'
-import AppTabItem from './app-tab-item.vue'
 import AppGroupTab from './app-tab.vue'
+import AppTabItem from './app-tab-item.vue'
 
 export const useTab = {
   install (app: App) {

@@ -6,11 +6,11 @@
   type ButtonType = 'button' | 'submit' | 'icon'
 
   interface Props {
-    to?: RouteLocationRaw
-    loading?: boolean
-    disabled?: boolean
-    variant?: Variant
-    type?: ButtonType
+    to?: RouteLocationRaw,
+    loading?: boolean,
+    disabled?: boolean,
+    variant?: Variant,
+    type?: ButtonType,
   }
 
   const props = withDefaults(defineProps<Props>(), {

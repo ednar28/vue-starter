@@ -32,9 +32,9 @@ declare global {
   }
 
   interface TabType {
-      label: string,
-      value: string,
-      icon?: string,
-      disabled?: boolean,
-    }
+    label: string,
+    value: string,
+    icon?: string,
+    disabled?: boolean,
+  }
 }

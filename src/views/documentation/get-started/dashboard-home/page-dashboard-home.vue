@@ -47,11 +47,11 @@
     { label: 'Kategori', value: '48', icon: 'lucide:folder-tree' },
     { label: 'Tag', value: '156', icon: 'lucide:tags' },
   ]
-  
+
   const tabs = [
     { value: 'All', label: 'Semua' },
     { value: 'Active', label: 'Aktif' },
-    { value: 'Inactive', label: 'Nonaktif' }
+    { value: 'Inactive', label: 'Nonaktif' },
   ]
 </script>
 
@@ -169,7 +169,9 @@
         <h2 class="text-xl font-semibold">
           Daftar Pengguna
         </h2>
-        <app-tab v-model="activeTab" :tabs="tabs"/>
+        <app-tab
+          v-model="activeTab"
+          :tabs="tabs" />
       </div>
 
       <app-card>

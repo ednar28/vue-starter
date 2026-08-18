@@ -25,7 +25,7 @@
   })
 
   const copyCode = async () => {
-    if(props.code) {
+    if (props.code) {
       copy(props.code)
       copied.value = true
       debounceCopiedReset()
@@ -99,8 +99,8 @@
         <app-window-block
           v-if="!hideWindowChrome"
           :label="themeLabel"
-          :activeDevice="activeDevice"
-          :activeTheme="activeTheme"
+          :active-device="activeDevice"
+          :active-theme="activeTheme"
           :direction="activeDirection">
           <slot></slot>
         </app-window-block>
@@ -109,7 +109,9 @@
         </div>
       </div>
 
-      <div v-if="props.code" class="border-t border-gray-100 bg-slate-50 px-5 py-6 sm:px-6">
+      <div
+        v-if="props.code"
+        class="border-t border-gray-100 bg-slate-50 px-5 py-6 sm:px-6">
         <div class="mb-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <p class="text-sm text-slate-900 font-semibold">

@@ -56,7 +56,7 @@ const componentsRoutes: RouteRecordRaw[] = [
         name: 'documentation-tab-pengaturan',
         component: () => import('@/views/documentation/components/tab/page-tab.vue'),
       },
-    ]
+    ],
   },
   {
     path: 'badge',

@@ -1,10 +1,10 @@
 <script setup lang="ts">
-defineProps<{
-  label: string,
-  direction?: 'ltr' | 'rtl',
-  activeDevice?: 'desktop' | 'tablet' | 'mobile',
-  activeTheme?: 'light' | 'dark',
-}>()
+  defineProps<{
+    label: string,
+    direction?: 'ltr' | 'rtl',
+    activeDevice?: 'desktop' | 'tablet' | 'mobile',
+    activeTheme?: 'light' | 'dark',
+  }>()
 </script>
 <template>
   <div

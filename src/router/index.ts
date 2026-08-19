@@ -1,12 +1,14 @@
 import NProgress from 'nprogress'
 import { createRouter, createWebHistory } from 'vue-router'
 import { appRoutes } from './app-routes'
+import { authRoutes } from './auth-routes'
 import { documentationRoutes } from './documentation'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     ...appRoutes,
+    ...authRoutes,
     ...documentationRoutes,
   ],
   scrollBehavior (to, from) {

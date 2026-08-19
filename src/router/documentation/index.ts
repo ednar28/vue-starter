@@ -18,11 +18,6 @@ const documentationRoutes: RouteRecordRaw[] = [
         name: 'documentation-dashboard-home',
         component: () => import('@/views/documentation/get-started/dashboard-home/page-dashboard-home.vue'),
       },
-      {
-        path: 'login',
-        name: 'documentation-login',
-        component: () => import('@/views/documentation/get-started/login/page-login.vue'),
-      },
       ...componentsRoutes,
       ...functionsRoutes,
       ...storesRoutes,

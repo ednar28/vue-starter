@@ -4,6 +4,6 @@ export default {
   items: [
     { label: 'Introduction', path: { name: 'introduction' } },
     { label: 'Dashboard Home', path: { name: 'documentation-dashboard-home' } },
-    { label: 'Login', path: { name: 'documentation-login' } },
+    { label: 'Login', path: { name: 'auth-login' } },
   ],
 }

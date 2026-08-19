@@ -1,5 +1,6 @@
 import type { App } from 'vue'
 import AppAnimatedDot from './app-animated-dot.vue'
+import AppBackground from './app-background.vue'
 import AppBadge from './app-badge.vue'
 import AppBreadcumb from './app-breadcumb.vue'
 import AppCard from './app-card.vue'
@@ -24,6 +25,7 @@ export default {
 
     app.component('AppCard', AppCard)
     app.component('AppBadge', AppBadge)
+    app.component('AppBackground', AppBackground)
     app.component('AppBreadcumb', AppBreadcumb)
     app.component('AppAnimatedDot', AppAnimatedDot)
     app.component('AppImg', AppImg)
@@ -36,6 +38,7 @@ declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     AppCard: typeof AppCard,
     AppBadge: typeof AppBadge,
+    AppBackground: typeof AppBackground,
     AppBreadcumb: typeof AppBreadcumb,
     AppAnimatedDot: typeof AppAnimatedDot,
     AppImg: typeof AppImg,

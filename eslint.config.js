@@ -16,6 +16,7 @@ export default [
   {
     rules: {
       'no-undef': 'off',
+      'no-useless-escape': 'off',
     },
   },
 

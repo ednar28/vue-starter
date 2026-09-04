@@ -16,7 +16,7 @@
   <!-- default thumbs -->
   <div
     v-if="variant !== 'lightbox'"
-    class="scrollbar-thin mt-3 flex gap-2 overflow-x-auto pb-1">
+    class="mt-3 flex gap-2 overflow-x-auto pb-1">
     <button
       v-for="(item, idx) in items"
       :key="`thumb-${idx}`"
@@ -71,16 +71,3 @@
     </div>
   </div>
 </template>
-
-<style scoped>
-.scrollbar-thin {
-  scrollbar-width: thin;
-}
-.scrollbar-thin::-webkit-scrollbar {
-  height: 4px;
-}
-.scrollbar-thin::-webkit-scrollbar-thumb {
-  background: #e5e7eb;
-  border-radius: 9999px;
-}
-</style>

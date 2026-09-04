@@ -68,6 +68,11 @@ const componentsRoutes: RouteRecordRaw[] = [
     name: 'documentation-breadcrumb',
     component: () => import('@/views/documentation/components/breadcrumb/page-breadcrumb.vue'),
   },
+  {
+    path: 'carousel',
+    name: 'documentation-carousel',
+    component: () => import('@/views/documentation/components/carousel/page-carousel.vue'),
+  },
 ]
 
 export { componentsRoutes }

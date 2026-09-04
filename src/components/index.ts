@@ -8,6 +8,7 @@ import AppIcon from './app-icon.vue'
 import AppImg from './app-img.vue'
 import AppPreviewHtml from './app-preview-html.vue'
 import { useButton } from './button'
+import { useCarousel } from './carousel'
 import { useDoc } from './docs'
 import { useInput } from './input'
 import useModal from './modal'
@@ -22,6 +23,7 @@ export default {
     app.use(useButton)
     app.use(useTab)
     app.use(useTable)
+    app.use(useCarousel)
 
     app.component('AppCard', AppCard)
     app.component('AppBadge', AppBadge)

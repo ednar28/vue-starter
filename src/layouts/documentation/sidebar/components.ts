@@ -6,6 +6,7 @@ export default {
     { label: 'Breadcrumb', path: { name: 'documentation-breadcrumb' } },
     { label: 'Button', path: { name: 'documentation-button' } },
     { label: 'Card', path: { name: 'documentation-card' } },
+    { label: 'Carousel', path: { name: 'documentation-carousel' } },
     { label: 'Icon', path: { name: 'documentation-icon' } },
     { label: 'Image', path: { name: 'documentation-img' } },
     { label: 'Input', path: { name: 'documentation-input' } },

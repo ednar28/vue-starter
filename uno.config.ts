@@ -14,8 +14,8 @@ export default defineConfig({
         sm: '1rem',
         md: '1rem',
         lg: '2rem',
-        xl: '6.5rem',
-        // '2xl': '2rem',
+        xl: '3rem',
+        '2xl': '3.5rem',
       },
     },
     breakpoints: {
@@ -24,7 +24,7 @@ export default defineConfig({
       md: '768px',
       lg: '1024px',
       xl: '1280px',
-      // '2xl': '1536px',
+      '2xl': '1536px',
     },
     fontSize: {
       '2xs': ['0.6875rem', '14px'], // 11px

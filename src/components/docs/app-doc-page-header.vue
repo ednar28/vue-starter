@@ -11,10 +11,10 @@
     <app-badge
       :label="badge || 'Dokumentasi'"
       :icon="true" />
-    <h1 class="text-3xl text-gray-900 font-bold tracking-tight lg:text-5xl sm:text-4xl">
+    <h1 class="text-3xl text-gray-900 font-bold tracking-tight lg:text-5xl sm:text-4xl dark:text-white">
       {{ title }}
     </h1>
-    <p class="mt-4 max-w-2xl text-base text-gray-500 leading-relaxed sm:text-lg">
+    <p class="mt-4 max-w-2xl text-base text-gray-500 leading-relaxed sm:text-lg dark:text-gray-400">
       <app-preview-html :text="description" />
     </p>
     <div class="mt-6 h-px w-20 from-primary/40 to-transparent bg-gradient-to-r"></div>

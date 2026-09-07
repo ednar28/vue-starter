@@ -36,7 +36,7 @@
           href="https://github.com/ednar28/vue-starter"
           target="_blank"
           rel="noopener"
-          class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm text-gray-500 font-medium transition-all duration-200 hover:bg-primary/5 hover:text-primary dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-white">
+          class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm text-gray-500 font-medium transition-all duration-200 hover:bg-primary/5 dark:text-gray-400 hover:text-primary dark:hover:bg-white/5 dark:hover:text-white">
           <app-icon
             icon="lucide:github"
             class="h-4 w-4" />

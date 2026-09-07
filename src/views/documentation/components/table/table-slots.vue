@@ -58,10 +58,10 @@
 
       <template #cell-action>
         <div class="flex items-center justify-center gap-2">
-          <button class="rounded-md bg-blue-100 px-2 py-1 text-xs text-blue-600 font-medium transition-colors hover:bg-blue-200 dark:bg-blue-500/15 dark:text-blue-300 dark:hover:bg-blue-500/25">
+          <button class="rounded-md bg-blue-100 px-2 py-1 text-xs text-blue-600 font-medium transition-colors dark:bg-blue-500/15 hover:bg-blue-200 dark:text-blue-300 dark:hover:bg-blue-500/25">
             Edit
           </button>
-          <button class="rounded-md bg-red-100 px-2 py-1 text-xs text-red-600 font-medium transition-colors hover:bg-red-200 dark:bg-red-500/15 dark:text-red-300 dark:hover:bg-red-500/25">
+          <button class="rounded-md bg-red-100 px-2 py-1 text-xs text-red-600 font-medium transition-colors dark:bg-red-500/15 hover:bg-red-200 dark:text-red-300 dark:hover:bg-red-500/25">
             Hapus
           </button>
         </div>

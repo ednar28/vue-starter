@@ -6,8 +6,11 @@ select {
 
 .form-input {
   @apply block w-full rounded-md border p-2 text-sm;
-  @apply bg-white focus:border-primary;
-  @apply disabled:cursor-not-allowed disabled:bg-opacity-50;
+  @apply border-gray-300 bg-white text-gray-900 placeholder:text-gray-400;
+  @apply focus:border-primary focus:ring-1 focus:ring-primary/30;
+  @apply disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500;
+  @apply dark:border-white/10 dark:bg-white/5 dark:text-gray-100 dark:placeholder:text-gray-500;
+  @apply dark:disabled:bg-white/5 dark:disabled:text-gray-500;
 
   textarea& {
     @apply pb-4;
@@ -16,4 +19,5 @@ select {
 
 .form-label {
   @apply block text-left text-sm font-medium leading-7;
+  @apply text-gray-700 dark:text-gray-200;
 }

@@ -28,7 +28,7 @@
 </script>
 
 <template>
-  <label :class="['flex items-center', disabled ? 'cursor-not-allowed' : 'cursor-pointer']">
+  <label :class="['flex select-none items-center', disabled ? 'cursor-not-allowed' : 'cursor-pointer']">
     <input
       v-if="value === undefined"
       v-model="model"
@@ -47,7 +47,7 @@
       class="peer cursor-pointer"
       :indeterminate.prop="isIndeterminate">
 
-    <div class="ml-2 text-sm peer-hover:text-black peer-disabled:opacity-40 peer-hover:peer-disabled:text-current">
+    <div class="ml-2 text-sm text-gray-700 dark:text-gray-300 peer-hover:text-black peer-disabled:opacity-40 dark:peer-hover:text-white peer-hover:peer-disabled:text-current">
       <template v-if="label">{{ label }}</template>
       <template v-else>
         <slot></slot>

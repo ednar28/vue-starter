@@ -44,11 +44,11 @@
       class="form-input relative cursor-pointer overflow-hidden"
       :class="{
         'input-ring': focus,
-        'cursor-not-allowed bg-gray-50': disabled || loading,
+        'cursor-not-allowed bg-gray-50 dark:bg-white/5': disabled || loading,
         '!border-primary': error === '' || error,
       }">
       <div
-        class="pointer-events-none absolute inset-y-0 left-2 z-20 flex items-center text-xs text-gray-500"
+        class="pointer-events-none absolute inset-y-0 left-2 z-20 flex items-center text-xs text-gray-500 dark:text-gray-400"
         :class="{ 'w-6': $slots.icon, 'w-1': !$slots.icon }">
         <slot name="icon"></slot>
       </div>
@@ -57,11 +57,10 @@
         ref="selectRef"
         v-model="modelValue"
         :required="required"
-        class="inset-0 z-10 h-full w-full !absolute"
+        class="inset-0 z-10 h-full w-full bg-transparent !absolute"
         :class="{
           'pl-8': $slots.icon,
-          'bg-white': !disabled && !loading,
-          'cursor-not-allowed bg-gray-50': disabled || loading,
+          'cursor-not-allowed': disabled || loading,
         }"
         :disabled="disabled || loading"
         @focus="focus = true"
@@ -76,13 +75,13 @@
         <slot></slot>
       </select>
       <select
-        class="h-full w-full cursor-none text-transparent"
+        class="ghost-select h-full w-full cursor-none text-transparent"
         disabled>
         <slot></slot>
       </select>
 
       <div
-        class="absolute inset-y-0 right-2 z-10 flex items-center text-xs text-gray-500"
+        class="absolute inset-y-0 right-2 z-10 flex items-center text-xs text-gray-500 dark:text-gray-400"
         :class="{
           'pointer-events-none': !modelValue,
         }">
@@ -92,9 +91,10 @@
           class="animate-spin" />
         <app-button
           v-else-if="modelValue"
-          variant="secondary"
+          variant="none"
           type="icon"
           :disabled="disabled"
+          class="pb-0.1"
           :class="{
             'cursor-not-allowed': disabled,
             'cursor-pointer': !disabled,
@@ -114,6 +114,14 @@
 <style lang="postcss" scoped>
   select {
     @apply block flex-1 cursor-pointer appearance-none rounded pl-2 pr-7 text-sm;
-    @apply text-black;
+    @apply bg-transparent text-gray-900 dark:text-gray-100;
+  }
+
+  option {
+    @apply bg-white text-gray-900 dark:bg-surface dark:text-gray-100;
+  }
+
+  select.ghost-select {
+    @apply text-transparent;
   }
 </style>

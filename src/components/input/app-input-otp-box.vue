@@ -63,7 +63,7 @@
       max="9"
       maxlength="1"
       pattern="[0-9]"
-      class="block h-10 w-10 border rounded text-center text-sm"
+      class="block h-10 w-10 border border-gray-300 rounded bg-white text-center text-sm text-gray-900 dark:border-white/10 focus:border-primary dark:bg-white/5 dark:text-gray-100"
       @keydown="handleOnKeyDown"
       @paste="handleOnPaste"
       @focus="handleOnFocus"

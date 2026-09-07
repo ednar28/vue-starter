@@ -15,21 +15,19 @@
 <template>
   <teleport to="body">
     <!-- dark overlay -->
-    <transition
-      name="fade"
-      mode="out-in">
+    <transition name="modal-fade">
       <div
         v-if="isOpen"
-        class="fixed inset-0 z-50 bg-black/25 dark:bg-black/60"
+        class="fixed inset-0 z-50 bg-black/25 backdrop-blur-[2px] dark:bg-black/60"
         @click="isOpen = false"></div>
     </transition>
 
-    <transition name="slidedown">
+    <transition name="modal-pop">
       <div
         v-if="isOpen"
-        class="pointer-events-none fixed inset-0 z-50 flex items-center justify-center sm:p-4">
+        class="pointer-events-none fixed inset-0 z-50 flex items-center justify-center overscroll-contain sm:p-4">
         <div
-          class="pointer-events-initial relative max-w-120 min-w-64 flex-1 overflow-hidden border border-gray-200 rounded-2xl bg-white p-6 text-left text-gray-900 shadow-xl dark:border-white/10 dark:bg-surface dark:text-gray-100 dark:shadow-none">
+          class="pointer-events-initial relative max-w-120 min-w-64 flex-1 overflow-hidden overscroll-contain border border-gray-200 rounded-2xl bg-white p-6 text-left text-gray-900 shadow-xl dark:border-white/10 dark:bg-surface dark:text-gray-100 dark:shadow-none">
           <app-modal-btn-close @click="close" />
 
           <app-modal-title class="mb-4 h-8">
@@ -46,7 +44,10 @@
 <style lang="postcss" scoped>
   :deep() {
     .modal-content {
-      @apply max-h-[calc(100vh-200px)] overflow-auto;
+      @apply max-h-[calc(100vh-200px)] overflow-auto overscroll-contain;
+
+      /* prevent scroll chaining to background when content hits the edge */
+      overscroll-behavior: contain;
 
       /* prevent focus ring clipped by overflow-auto */
       @apply pl-2 pr-3 py-2 -my-2 -ml-2 -mr-4;

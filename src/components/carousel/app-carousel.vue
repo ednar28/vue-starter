@@ -1,5 +1,6 @@
 <script setup lang="ts">
   import { computed, onBeforeUnmount, onMounted, ref, useTemplateRef } from 'vue'
+  import { useDocumentOverflow } from '@/functions'
   import AppCarouselLightbox from './app-carousel-lightbox.vue'
   import AppCarouselThumbs from './app-carousel-thumbs.vue'
   import type { CarouselEmit, CarouselProps } from './carousel.types'
@@ -40,19 +41,21 @@
   // lightbox
   const isLightboxOpen = ref(false)
   const lightboxRef = useTemplateRef('lightboxRef')
+  const { disableOverflow, reenableOverflow } = useDocumentOverflow()
 
   const openLightbox = (index?: number) => {
     if (!props.zoomable) return
     if (typeof index === 'number') goTo(index)
+    if (!isLightboxOpen.value) disableOverflow()
     isLightboxOpen.value = true
     lightboxRef.value?.resetZoom()
     autoplay.stop()
-    document.body.style.overflow = 'hidden'
   }
 
   const closeLightbox = () => {
+    if (!isLightboxOpen.value) return
     isLightboxOpen.value = false
-    document.body.style.overflow = ''
+    reenableOverflow()
     lightboxRef.value?.resetZoom()
     if (props.autoplay) autoplay.start()
   }
@@ -92,7 +95,7 @@
   onMounted(() => window.addEventListener('keydown', onKeydown))
   onBeforeUnmount(() => {
     window.removeEventListener('keydown', onKeydown)
-    document.body.style.overflow = ''
+    if (isLightboxOpen.value) reenableOverflow()
   })
 
   defineExpose({ goTo: handleGoTo, next, prev, openLightbox, closeLightbox })

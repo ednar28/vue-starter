@@ -71,15 +71,32 @@ export const useEscListener = (callback: () => void) => {
   }
 }
 
+// Counter-based body scroll lock.
+// - Background stays non-scrollable while a modal/lightbox is open.
+// - `scrollbar-gutter: stable` (in base.css) reserves layout width so the
+//   scrollbar does not "disappear" and no layout shift occurs.
+// - Counter prevents multiple concurrently opened modals/lightboxes
+//   from unlocking each other prematurely.
+let documentLockCount = 0
+let prevBodyOverflow = ''
+
 export const useDocumentOverflow = () => {
   const disableOverflow = () => {
-    document.body.style.overflowY = 'hidden'
+    if (typeof document === 'undefined') return
+    documentLockCount += 1
+    if (documentLockCount === 1) {
+      prevBodyOverflow = document.body.style.overflow
+      document.documentElement.style.scrollbarGutter = 'stable'
+      document.body.style.overflow = 'hidden'
+    }
   }
   const reenableOverflow = () => {
-    // delay because of vue lightbox
-    setTimeout(() => {
-      document.body.style.overflowY = ''
-    }, 200)
+    if (typeof document === 'undefined') return
+    documentLockCount = Math.max(0, documentLockCount - 1)
+    if (documentLockCount === 0) {
+      document.body.style.overflow = prevBodyOverflow
+      prevBodyOverflow = ''
+    }
   }
   return {
     disableOverflow,

@@ -2,7 +2,7 @@ import { defineConfig, presetIcons, presetWind3, transformerDirectives } from 'u
 
 export default defineConfig({
   presets: [
-    presetWind3(),
+    presetWind3({ dark: 'class' }),
     presetIcons(),
   ],
   transformers: [transformerDirectives()],
@@ -72,6 +72,12 @@ export default defineConfig({
         700: '#b91c1c',
         800: '#991b1b',
         900: '#7f1d1d',
+      },
+      canvas: {
+        DEFAULT: '#1c1c1c',
+      },
+      surface: {
+        DEFAULT: '#252525',
       },
     },
   },

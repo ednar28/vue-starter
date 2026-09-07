@@ -1,3 +1,8 @@
 html {
-  @apply bg-gray-50;
+  @apply bg-gray-50 text-gray-900;
+}
+
+html.dark {
+  @apply bg-canvas text-gray-100;
+  color-scheme: dark;
 }

@@ -119,16 +119,16 @@
           <div
             v-for="item in quickStats"
             :key="item.label"
-            class="flex items-center justify-between rounded-lg bg-slate-50 p-3">
+            class="flex items-center justify-between border border-gray-200/70 rounded-lg bg-slate-50 p-3 dark:border-white/10 dark:bg-black/20">
             <div class="flex items-center gap-3">
               <div class="rounded-lg bg-primary/10 p-2">
                 <app-icon
                   :icon="item.icon"
                   class="h-5 w-5 text-primary" />
               </div>
-              <span class="text-sm font-medium">{{ item.label }}</span>
+              <span class="text-sm text-gray-800 font-medium dark:text-gray-100">{{ item.label }}</span>
             </div>
-            <span class="text-lg font-bold">{{ item.value }}</span>
+            <span class="text-lg text-gray-900 font-bold dark:text-white">{{ item.value }}</span>
           </div>
         </div>
       </app-card>
@@ -141,10 +141,10 @@
             v-for="(activity, idx) in recentActivities"
             :key="idx"
             class="flex items-start gap-3">
-            <div class="mt-0.5 rounded-full bg-slate-100 p-2">
+            <div class="mt-0.5 size-10 flex items-center justify-center rounded-full bg-slate-100 dark:bg-white/10">
               <app-icon
                 :icon="activity.icon"
-                class="h-4 w-4 text-slate-600" />
+                class="size-4 text-slate-600 dark:text-gray-300" />
             </div>
             <div class="flex-1">
               <p class="text-sm">

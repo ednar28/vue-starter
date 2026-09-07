@@ -13,20 +13,20 @@
 </script>
 
 <template>
-  <div class="h-16 flex shrink-0 items-center border-b border-white/5 px-4">
+  <div class="dark:bg-surface h-16 flex shrink-0 items-center border-b border-gray-100 bg-white px-4 dark:border-white/10">
     <div class="flex items-center gap-3">
-      <div class="h-9 w-9 flex items-center justify-center rounded-xl from-primary to-orange-500 bg-gradient-to-br shadow-lg shadow-orange-500/20">
+      <div class="h-9 w-9 flex items-center justify-center rounded-xl from-primary to-primary-600 bg-gradient-to-br shadow-lg shadow-primary/25">
         <app-icon
           :icon="icon"
           class="h-5 w-5 text-white" />
       </div>
       <div>
-        <h1 class="text-sm text-gray-100 font-semibold">
+        <h1 class="text-sm text-gray-900 font-semibold tracking-tight dark:text-white">
           {{ title }}
         </h1>
         <p
           v-if="subtitle"
-          class="text-xs text-gray-500">
+          class="text-xs text-gray-400 dark:text-gray-500">
           {{ subtitle }}
         </p>
       </div>

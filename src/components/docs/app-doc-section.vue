@@ -63,7 +63,7 @@
       <app-preview-html :text="props.description" />
     </p>
 
-    <div class="overflow-hidden border border-gray-200/70 rounded-[28px] bg-white shadow-gray-200/20 shadow-lg transition-all duration-300 dark:border-white/10 dark:bg-surface dark:shadow-none hover:shadow-xl">
+    <div class="overflow-hidden border border-gray-200/70 rounded-[28px] bg-white shadow-gray-200/20 shadow-lg transition-all duration-300 dark:border-white/10 hover:border-primary/20 dark:bg-surface dark:shadow-none hover:shadow-primary/5 hover:shadow-xl hover:-translate-y-1 dark:hover:border-primary/30">
       <div
         v-if="!props.hidePreviewToolbar"
         class="flex flex-col gap-3 border-b border-gray-100 bg-slate-50 px-5 py-4 sm:flex-row sm:items-center dark:border-white/10 dark:bg-black/20">

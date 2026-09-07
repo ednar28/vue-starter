@@ -64,6 +64,11 @@ const componentsRoutes: RouteRecordRaw[] = [
     component: () => import('@/views/documentation/components/badge/page-badge.vue'),
   },
   {
+    path: 'sidebar',
+    name: 'documentation-sidebar',
+    component: () => import('@/views/documentation/components/sidebar/page-sidebar.vue'),
+  },
+  {
     path: 'breadcrumb',
     name: 'documentation-breadcrumb',
     component: () => import('@/views/documentation/components/breadcrumb/page-breadcrumb.vue'),

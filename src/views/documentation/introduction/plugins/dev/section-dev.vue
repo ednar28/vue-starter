@@ -7,7 +7,7 @@
 </script>
 
 <template>
-  <div class="mb-3 text-sm text-gray-800 font-semibold">
+  <div class="mb-3 text-sm text-gray-800 font-semibold dark:text-white">
     Dev
   </div>
   <div class="grid grid-cols-1 mb-8 gap-5">

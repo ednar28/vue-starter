@@ -28,12 +28,12 @@
         <button
           type="button"
           class="inline-flex items-center justify-center border border-gray-200 rounded-full bg-white p-2 shadow-sm transition dark:border-white/10 dark:bg-canvas hover:bg-gray-100 dark:hover:bg-white/10"
-          :class="appStore.isDark ? 'text-amber-500' : 'text-indigo-500 dark:text-indigo-400'"
+          :class="appStore.isDark ? 'text-indigo-500 dark:text-indigo-400' : 'text-amber-500'"
           :aria-label="appStore.isDark ? 'Switch to light mode' : 'Switch to dark mode'"
           :title="appStore.isDark ? 'Light mode' : 'Dark mode'"
           @click="appStore.toggleTheme()">
           <app-icon
-            :icon="appStore.isDark ? 'lucide:sun' : 'lucide:moon'"
+            :icon="appStore.isDark ? 'lucide:moon' : 'lucide:sun'"
             class="h-4 w-4" />
         </button>
         <button

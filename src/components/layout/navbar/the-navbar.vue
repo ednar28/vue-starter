@@ -27,13 +27,14 @@
       <div class="flex items-center gap-1">
         <button
           type="button"
-          class="rounded-xl p-2 text-gray-500 transition-all active:scale-95 hover:bg-gray-100 dark:text-gray-400 hover:text-gray-700 dark:hover:bg-white/10 dark:hover:text-white"
+          class="inline-flex items-center justify-center border border-gray-200 rounded-full bg-white p-2 shadow-sm transition dark:border-white/10 dark:bg-canvas hover:bg-gray-100 dark:hover:bg-white/10"
+          :class="appStore.isDark ? 'text-amber-500' : 'text-indigo-500 dark:text-indigo-400'"
           :aria-label="appStore.isDark ? 'Switch to light mode' : 'Switch to dark mode'"
           :title="appStore.isDark ? 'Light mode' : 'Dark mode'"
           @click="appStore.toggleTheme()">
           <app-icon
             :icon="appStore.isDark ? 'lucide:sun' : 'lucide:moon'"
-            class="h-5 w-5" />
+            class="h-4 w-4" />
         </button>
         <button
           type="button"

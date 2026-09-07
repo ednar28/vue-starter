@@ -24,7 +24,7 @@
 <template>
   <aside
     :class="[
-      'fixed lg:sticky top-0 z-50 h-screen w-72 lg:w-72 bg-white border-r border-gray-100 shadow-[1px_0_16px_rgba(15,23,42,0.06)] overflow-y-auto transition-all duration-300 ease-out lg:translate-x-0 lg:max-h-screen dark:bg-surface dark:border-white/10 dark:shadow-none',
+      'fixed lg:sticky top-0 z-50 h-screen w-72 lg:w-72 bg-white border-r border-gray-200/80 overflow-y-auto transition-all duration-300 ease-out lg:translate-x-0 lg:max-h-screen dark:bg-surface dark:border-white/10',
       sidebarOpen ? 'translate-x-0' : '-translate-x-full'
     ]">
     <div class="h-full flex flex-col">

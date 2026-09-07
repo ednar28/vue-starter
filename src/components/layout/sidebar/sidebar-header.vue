@@ -13,7 +13,7 @@
 </script>
 
 <template>
-  <div class="h-16 flex shrink-0 items-center border-b border-gray-100 bg-white px-4 dark:border-white/10 dark:bg-surface">
+  <div class="h-16 flex shrink-0 items-center border-b border-gray-200/80 bg-white px-4 dark:border-white/10 dark:bg-surface">
     <div class="flex items-center gap-3">
       <div class="h-9 w-9 flex items-center justify-center rounded-xl from-primary to-primary-600 bg-gradient-to-br shadow-lg shadow-primary/25">
         <app-icon

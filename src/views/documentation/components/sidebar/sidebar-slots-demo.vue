@@ -15,7 +15,7 @@
   const code = [
     '<sidebar-layout :sidebar-open="true" :nav-items="navItems">',
     '  <template #footer>',
-    '    <div class="shrink-0 border-t border-gray-100 p-4">',
+    '    <div class="shrink-0 border-t border-gray-200/80 p-4">',
     '      <a href="https://github.com/ednar28/vue-starter" target="_blank">',
     '        GitHub Repository',
     '      </a>',
@@ -38,7 +38,7 @@
           title="Vue Starter"
           subtitle="Dokumentasi">
           <template #footer>
-            <div class="shrink-0 border-t border-gray-100 bg-white p-4 dark:border-white/10 dark:bg-surface">
+            <div class="shrink-0 border-t border-gray-200/80 bg-white p-4 dark:border-white/10 dark:bg-surface">
               <a
                 href="https://github.com/ednar28/vue-starter"
                 target="_blank"

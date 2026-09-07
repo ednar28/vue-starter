@@ -19,7 +19,7 @@
 </script>
 
 <template>
-  <header class="sticky top-0 z-40 h-16 border-b border-gray-200/80 bg-white/90 backdrop-blur-xl dark:border-white/10 dark:bg-canvas/90">
+  <header class="sticky top-0 z-40 h-16 border-b border-gray-200/80 bg-white dark:border-white/10 dark:bg-surface">
     <div class="container mx-auto h-full flex items-center justify-between">
       <h1 class="text-xl text-gray-900 font-semibold dark:text-white">
         {{ title }}

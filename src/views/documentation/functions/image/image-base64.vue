@@ -14,10 +14,10 @@
     title="base64ToBlob"
     description="Mengubah string base64 menjadi Blob object."
     :code="code">
-    <div class="rounded-lg bg-gray-50 p-4">
-      <p class="text-xs text-gray-500">
+    <app-doc-result hide-label>
+      <p class="text-xs">
         Async function — mengembalikan <code>Promise&lt;Blob&gt;</code>.
       </p>
-    </div>
+    </app-doc-result>
   </app-doc-section>
 </template>

@@ -42,29 +42,26 @@
     description="Filter array berdasarkan string pencarian. Case-insensitive dan mengabaikan spasi."
     :code="code">
     <div class="space-y-3">
-      <div class="rounded-lg bg-gray-50 p-4">
-        <p class="mb-2 text-xs text-gray-600 font-semibold">
-          Demo Interaktif:
-        </p>
+      <app-doc-result label="Demo Interaktif:">
         <input
           v-model="searchQuery"
           type="text"
           placeholder="Ketik untuk mencari..."
-          class="w-full border border-gray-300 rounded-lg px-4 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500">
+          class="w-full border border-gray-300 rounded-lg bg-white px-4 py-2 text-sm text-gray-900 dark:border-white/10 focus:border-blue-500 dark:bg-white/5 dark:text-gray-100 focus:outline-none focus:ring-1 focus:ring-blue-500 dark:focus:border-white/30 dark:placeholder:text-gray-500">
         <div class="mt-3 space-y-2">
           <div
             v-for="item in filteredItems"
             :key="item.id"
-            class="rounded bg-white p-2 text-sm text-gray-700 shadow-sm">
+            class="rounded bg-white p-2 text-sm text-gray-700 shadow-sm dark:bg-white/10 dark:text-gray-100 dark:shadow-none">
             {{ item.name }}
           </div>
           <div
             v-if="filteredItems.length === 0"
-            class="text-sm text-gray-500 italic">
+            class="text-sm text-gray-500 italic dark:text-gray-400">
             Tidak ada hasil ditemukan
           </div>
         </div>
-      </div>
+      </app-doc-result>
     </div>
   </app-doc-section>
 </template>

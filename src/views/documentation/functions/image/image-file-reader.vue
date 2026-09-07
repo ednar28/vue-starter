@@ -14,10 +14,10 @@
     title="filereader"
     description="Membaca file dan mengubahnya menjadi string base64."
     :code="code">
-    <div class="rounded-lg bg-gray-50 p-4">
-      <p class="text-xs text-gray-500">
+    <app-doc-result hide-label>
+      <p class="text-xs">
         Async function — mengembalikan <code>Promise&lt;string | null&gt;</code>.
       </p>
-    </div>
+    </app-doc-result>
   </app-doc-section>
 </template>

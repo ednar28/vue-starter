@@ -10,7 +10,7 @@
       mode="out-in">
       <div
         v-if="isOpen"
-        class="fixed inset-0 z-40 bg-black bg-opacity-25"
+        class="fixed inset-0 z-40 bg-black/25 dark:bg-black/60"
         @click="isOpen = false"></div>
     </transition>
 

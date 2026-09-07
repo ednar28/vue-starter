@@ -9,7 +9,7 @@
     '</app-button>',
     '',
     '<app-modal ref="defaultModal" title="Modal Title">',
-    '  <app-modal-content class="text-gray-700">',
+    '  <app-modal-content class="text-gray-700 dark:text-gray-300">',
     '    Modal content here...',
     '  </app-modal-content>',
     '  <app-modal-footer>',
@@ -39,7 +39,7 @@
     <app-modal
       ref="defaultModal"
       title="Default Modal">
-      <app-modal-content class="text-gray-700">
+      <app-modal-content class="text-gray-700 dark:text-gray-300">
         Ini adalah contoh modal default. Modal ini muncul di tengah layar dengan overlay gelap di belakangnya.
       </app-modal-content>
       <app-modal-footer>

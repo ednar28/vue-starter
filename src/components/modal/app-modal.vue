@@ -20,7 +20,7 @@
       mode="out-in">
       <div
         v-if="isOpen"
-        class="fixed inset-0 z-50 bg-black bg-opacity-25"
+        class="fixed inset-0 z-50 bg-black/25 dark:bg-black/60"
         @click="isOpen = false"></div>
     </transition>
 
@@ -29,7 +29,7 @@
         v-if="isOpen"
         class="pointer-events-none fixed inset-0 z-50 flex items-center justify-center sm:p-4">
         <div
-          class="pointer-events-initial relative max-w-120 min-w-64 flex-1 overflow-hidden rounded-2xl bg-white p-6 text-left shadow-xl">
+          class="pointer-events-initial relative max-w-120 min-w-64 flex-1 overflow-hidden border border-gray-200 rounded-2xl bg-white p-6 text-left text-gray-900 shadow-xl dark:border-white/10 dark:bg-surface dark:text-gray-100 dark:shadow-none">
           <app-modal-btn-close @click="close" />
 
           <app-modal-title class="mb-4 h-8">

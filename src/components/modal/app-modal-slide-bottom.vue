@@ -26,7 +26,7 @@
         <!-- The actual dialog panel -->
         <div
           v-click-outside="close"
-          class="overflow-hidden rounded-t-2xl bg-white p-4 text-left align-middle shadow-xl lg:p-6"
+          class="overflow-hidden border border-gray-200 rounded-t-2xl bg-white p-4 text-left align-middle text-gray-900 shadow-xl dark:border-white/10 dark:bg-surface lg:p-6 dark:text-gray-100 dark:shadow-none"
           :class="{ 'lg:max-w-md': isSmall }">
           <div class="space-y-6">
             <app-modal-title>{{ title }}</app-modal-title>

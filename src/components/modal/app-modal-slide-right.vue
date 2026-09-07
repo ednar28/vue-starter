@@ -24,7 +24,7 @@
         class="fixed inset-y-0 right-0 z-50 transition-all duration-300 ease">
         <!-- The actual dialog panel -->
         <div
-          class="h-full max-w-96 w-[calc(100vw-16px)] rounded-l-2xl bg-white p-4 shadow-xl lg:p-6">
+          class="h-full max-w-96 w-[calc(100vw-16px)] border border-gray-200 rounded-l-2xl bg-white p-4 text-gray-900 shadow-xl dark:border-white/10 dark:bg-surface lg:p-6 dark:text-gray-100 dark:shadow-none">
           <div class="h-full flex flex-col">
             <app-modal-title class="mb-6">
               {{ title }}

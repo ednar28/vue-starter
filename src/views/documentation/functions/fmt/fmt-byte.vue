@@ -19,18 +19,15 @@
     description="Mengubah angka byte menjadi format yang mudah dibaca (KB, MB, GB, dll)."
     :code="code">
     <div class="space-y-3">
-      <div class="rounded-lg bg-gray-50 p-4">
-        <p class="mb-2 text-xs text-gray-600 font-semibold">
-          Contoh Hasil:
-        </p>
-        <code class="text-sm text-gray-700">{{ fmt.byte(1024) }}</code>
-      </div>
-      <div class="rounded-lg bg-gray-50 p-4">
-        <code class="text-sm text-gray-700">{{ fmt.byte(1048576) }}</code>
-      </div>
-      <div class="rounded-lg bg-gray-50 p-4">
-        <code class="text-sm text-gray-700">{{ fmt.byte(1073741824) }}</code>
-      </div>
+      <app-doc-result>
+        <code class="text-sm font-mono">{{ fmt.byte(1024) }}</code>
+      </app-doc-result>
+      <app-doc-result hide-label>
+        <code class="text-sm font-mono">{{ fmt.byte(1048576) }}</code>
+      </app-doc-result>
+      <app-doc-result hide-label>
+        <code class="text-sm font-mono">{{ fmt.byte(1073741824) }}</code>
+      </app-doc-result>
     </div>
   </app-doc-section>
 </template>

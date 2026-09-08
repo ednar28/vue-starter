@@ -1,4 +1,4 @@
-import { type App, ref, useTemplateRef, watch } from 'vue'
+import { type App, onBeforeUnmount, ref, useTemplateRef, watch } from 'vue'
 import { useDocumentOverflow, useEscListener } from '@/functions'
 import AppModal from './app-modal.vue'
 import AppModalContent from './app-modal-content.vue'
@@ -27,6 +27,13 @@ export function useModal () {
       disableOverflow()
       window.addEventListener('keydown', onEscape)
     } else {
+      reenableOverflow()
+      window.removeEventListener('keydown', onEscape)
+    }
+  })
+
+  onBeforeUnmount(() => {
+    if (isOpen.value) {
       reenableOverflow()
       window.removeEventListener('keydown', onEscape)
     }

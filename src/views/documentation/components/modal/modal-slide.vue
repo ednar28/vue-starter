@@ -9,7 +9,7 @@
     '</app-button>',
     '',
     '<app-modal-slide-bottom ref="modal" title="Slide Modal">',
-    '  <app-modal-content class="text-gray-700">',
+    '  <app-modal-content class="text-gray-700 dark:text-gray-300">',
     '    Slide modal content...',
     '  </app-modal-content>',
     '  <app-modal-footer>',
@@ -36,7 +36,7 @@
     <app-modal-slide-bottom
       ref="slideModal"
       title="Slide Bottom Modal">
-      <app-modal-content class="text-gray-700">
+      <app-modal-content class="text-gray-700 dark:text-gray-300">
         Modal ini muncul dengan animasi slide dari bawah layar. Sangat cocok untuk tampilan mobile.
       </app-modal-content>
       <app-modal-footer>

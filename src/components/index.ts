@@ -7,6 +7,7 @@ import AppCard from './app-card.vue'
 import AppIcon from './app-icon.vue'
 import AppImg from './app-img.vue'
 import AppPreviewHtml from './app-preview-html.vue'
+import AppThemeToggle from './app-theme-toggle.vue'
 import { useButton } from './button'
 import { useCarousel } from './carousel'
 import { useDoc } from './docs'
@@ -33,6 +34,7 @@ export default {
     app.component('AppImg', AppImg)
     app.component('AppPreviewHtml', AppPreviewHtml)
     app.component('AppIcon', AppIcon)
+    app.component('AppThemeToggle', AppThemeToggle)
   },
 }
 
@@ -46,5 +48,6 @@ declare module '@vue/runtime-core' {
     AppImg: typeof AppImg,
     AppPreviewHtml: typeof AppPreviewHtml,
     AppIcon: typeof AppIcon,
+    AppThemeToggle: typeof AppThemeToggle,
   }
 }

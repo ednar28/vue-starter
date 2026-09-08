@@ -21,10 +21,10 @@
       <!-- Full-screen container to center the panel -->
       <div
         v-if="isOpen"
-        class="fixed inset-y-0 right-0 z-50 transition-all duration-300 ease">
+        class="fixed inset-y-0 right-0 z-50 overscroll-contain transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]">
         <!-- The actual dialog panel -->
         <div
-          class="h-full max-w-96 w-[calc(100vw-16px)] rounded-l-2xl bg-white p-4 shadow-xl lg:p-6">
+          class="h-full max-w-96 w-[calc(100vw-16px)] border border-gray-200 rounded-l-2xl bg-white p-4 text-gray-900 shadow-xl dark:border-white/10 dark:bg-surface lg:p-6 dark:text-gray-100 dark:shadow-none">
           <div class="h-full flex flex-col">
             <app-modal-title class="mb-6">
               {{ title }}
@@ -43,12 +43,14 @@
 <style lang="postcss" scoped>
   :deep() {
     .modal-content {
-      @apply flex-1 overflow-auto;
+      @apply flex-1 overflow-auto overscroll-contain;
+
+      overscroll-behavior: contain;
 
       /* prevent focus ring clipped by overflow-auto */
       @apply pl-2 pr-3 pt-2 -my-2 -ml-2 -mr-5 pb-6;
 
-      /* prevent uggly layout shift when scrollbar appear/disappear */
+      /* prevent ugly layout shift when scrollbar appear/disappear */
       @apply scrollbar-stable;
     }
     .modal-footer {

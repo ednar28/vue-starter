@@ -20,7 +20,7 @@
     title="useAppModal"
     description="Hook untuk menghubungkan aksi tombol dengan modal melalui ref yang sudah terdefinisi."
     :code="code">
-    <div class="border border-gray-200 rounded-lg bg-gray-50 p-4 text-sm text-gray-700">
+    <div class="border border-gray-200 rounded-lg bg-gray-50 p-4 text-sm text-gray-700 dark:border-white/10 dark:bg-white/5 dark:text-gray-300">
       <p class="mb-2 font-medium">
         Fungsi utama:
       </p>

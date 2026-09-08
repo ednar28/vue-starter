@@ -15,21 +15,21 @@
   const code = [
     '<app-table :columns="columns" :rows="rows">',
     '  <template #cell-no="{ value }">',
-    '    <span class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-slate-100 text-xs font-semibold text-slate-700">',
+    '    <span class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-slate-100 text-xs font-semibold text-slate-700 dark:bg-white/10 dark:text-gray-200">',
     '      {{ value }}',
     '    </span>',
     '  </template>',
     '',
     '  <template #cell-harga="{ value }">',
-    '    <span class="font-semibold text-slate-900">{{ value }}</span>',
+    '    <span class="font-semibold text-slate-900 dark:text-white">{{ value }}</span>',
     '  </template>',
     '',
     '  <template #cell-action>',
     '    <div class="flex items-center justify-center gap-2">',
-    '      <button class="px-2 py-1 text-xs bg-blue-100 text-blue-600 rounded hover:bg-blue-200 transition-colors">',
+    '      <button class="px-2 py-1 text-xs font-medium bg-blue-100 text-blue-600 rounded-md hover:bg-blue-200 transition-colors dark:bg-blue-500/15 dark:text-blue-300 dark:hover:bg-blue-500/25">',
     '        Edit',
     '      </button>',
-    '      <button class="px-2 py-1 text-xs bg-red-100 text-red-600 rounded hover:bg-red-200 transition-colors">',
+    '      <button class="px-2 py-1 text-xs font-medium bg-red-100 text-red-600 rounded-md hover:bg-red-200 transition-colors dark:bg-red-500/15 dark:text-red-300 dark:hover:bg-red-500/25">',
     '        Hapus',
     '      </button>',
     '    </div>',
@@ -47,21 +47,21 @@
       :columns="columns"
       :rows="rows">
       <template #cell-no="{ value }">
-        <span class="h-6 w-6 inline-flex items-center justify-center rounded-full bg-slate-100 text-xs text-slate-700 font-semibold">
+        <span class="h-6 w-6 inline-flex items-center justify-center rounded-full bg-slate-100 text-xs text-slate-700 font-semibold dark:bg-white/10 dark:text-gray-200">
           {{ value }}
         </span>
       </template>
 
       <template #cell-harga="{ value }">
-        <span class="text-slate-900 font-semibold">{{ value }}</span>
+        <span class="text-slate-900 font-semibold dark:text-white">{{ value }}</span>
       </template>
 
       <template #cell-action>
         <div class="flex items-center justify-center gap-2">
-          <button class="rounded bg-blue-100 px-2 py-1 text-xs text-blue-600 transition-colors hover:bg-blue-200">
+          <button class="rounded-md bg-blue-100 px-2 py-1 text-xs text-blue-600 font-medium transition-colors dark:bg-blue-500/15 hover:bg-blue-200 dark:text-blue-300 dark:hover:bg-blue-500/25">
             Edit
           </button>
-          <button class="rounded bg-red-100 px-2 py-1 text-xs text-red-600 transition-colors hover:bg-red-200">
+          <button class="rounded-md bg-red-100 px-2 py-1 text-xs text-red-600 font-medium transition-colors dark:bg-red-500/15 hover:bg-red-200 dark:text-red-300 dark:hover:bg-red-500/25">
             Hapus
           </button>
         </div>

@@ -11,6 +11,7 @@ export default {
     { label: 'Image', path: { name: 'documentation-img' } },
     { label: 'Input', path: { name: 'documentation-input' } },
     { label: 'Modal', path: { name: 'documentation-modal' } },
+    { label: 'Sidebar', path: { name: 'documentation-sidebar' } },
     { label: 'Tab', path: { name: 'documentation-tab' } },
     { label: 'Table', path: { name: 'documentation-table' } },
   ],

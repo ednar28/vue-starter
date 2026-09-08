@@ -35,7 +35,7 @@
       #inline>
       <button
         type="button"
-        class="absolute right-2 z-10 flex cursor-pointer select-none items-center justify-center p-1 text-gray-400"
+        class="absolute right-2 z-10 flex cursor-pointer select-none items-center justify-center p-1 text-gray-400 transition-colors dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300"
         @click="showPassword = !showPassword">
         <app-icon :icon="showPassword ? 'lucide:eye-off' : 'lucide:eye'" />
       </button>

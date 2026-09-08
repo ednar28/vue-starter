@@ -17,7 +17,7 @@
 
 <template>
   <div class="pointer-events-none absolute inset-0 overflow-hidden">
-    <div class="animate-aurora absolute from-orange-200/70 via-orange-50 to-orange-200/50 bg-gradient-to-br -inset-24"></div>
+    <div class="animate-aurora absolute from-orange-200/70 via-orange-50 to-orange-200/50 bg-gradient-to-br -inset-24 dark:from-white/[0.04] dark:via-primary/[0.07] dark:to-transparent"></div>
     <div
       v-for="(b, i) in bubbles"
       :key="i"
@@ -52,15 +52,25 @@
     bottom: -4rem;
     border-radius: 9999px;
     background:
-      radial-gradient(circle at 32% 28%, rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0) 45%),
-      radial-gradient(circle at 68% 68%, rgba(251, 146, 60, 0.28), rgba(251, 146, 60, 0) 55%),
-      radial-gradient(circle, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0) 70%);
-    border: 1.5px solid rgba(249, 115, 22, 0.35);
+      radial-gradient(circle at 32% 28%, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0) 45%),
+      radial-gradient(circle at 68% 68%, rgba(249, 115, 22, 0.12), rgba(249, 115, 22, 0) 55%),
+      radial-gradient(circle, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0) 70%);
+    border: 1.5px solid rgba(0, 0, 0, 0.08);
     box-shadow:
       inset -5px -5px 12px rgba(255, 255, 255, 0.25),
       inset 4px 4px 10px rgba(255, 255, 255, 0.35),
-      0 8px 24px rgba(249, 115, 22, 0.12);
+      0 8px 24px rgba(0, 0, 0, 0.08),
+      0 0 20px rgba(249, 115, 22, 0.1);
     animation: bubble-rise 14s linear infinite;
+  }
+
+  :global(html.dark) .bubble {
+    border-color: rgba(255, 255, 255, 0.18);
+    box-shadow:
+      inset -5px -5px 12px rgba(255, 255, 255, 0.06),
+      inset 4px 4px 10px rgba(255, 255, 255, 0.08),
+      0 8px 24px rgba(0, 0, 0, 0.4),
+      0 0 20px rgba(249, 115, 22, 0.15);
   }
 
   @media (prefers-reduced-motion: reduce) {

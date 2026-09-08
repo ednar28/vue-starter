@@ -22,11 +22,11 @@
       <!-- Full-screen container to center the panel -->
       <div
         v-if="isOpen"
-        class="fixed inset-x-0 bottom-0 z-50 mx-auto max-w-screen-sm transition-all duration-300 ease">
+        class="fixed inset-x-0 bottom-0 z-50 mx-auto max-w-screen-sm overscroll-contain transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]">
         <!-- The actual dialog panel -->
         <div
           v-click-outside="close"
-          class="overflow-hidden rounded-t-2xl bg-white p-4 text-left align-middle shadow-xl lg:p-6"
+          class="overflow-hidden border border-gray-200 rounded-t-2xl bg-white p-4 text-left align-middle text-gray-900 shadow-xl dark:border-white/10 dark:bg-surface lg:p-6 dark:text-gray-100 dark:shadow-none"
           :class="{ 'lg:max-w-md': isSmall }">
           <div class="space-y-6">
             <app-modal-title>{{ title }}</app-modal-title>
@@ -44,12 +44,14 @@
 <style lang="postcss" scoped>
   :deep() {
     .modal-content {
-      @apply max-h-[calc(100vh-200px)] overflow-auto;
+      @apply max-h-[calc(100vh-200px)] overflow-auto overscroll-contain;
+
+      overscroll-behavior: contain;
 
       /* prevent focus ring clipped by overflow-auto */
       @apply pl-2 pr-3 py-2 -my-2 -ml-2 -mr-4;
 
-      /* prevent uggly layout shift when scrollbar appear/disappear */
+      /* prevent ugly layout shift when scrollbar appear/disappear */
       @apply scrollbar-stable;
     }
     .modal-footer {

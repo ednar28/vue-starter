@@ -78,7 +78,7 @@
         @keydown="emit('keydown', $event)">
       <div
         v-if="maxLength !== undefined"
-        class="absolute bottom-1 right-2 bg-white text-3xs text-gray-500">
+        class="absolute bottom-1 right-2 bg-transparent text-3xs text-gray-500 dark:text-gray-400">
         {{ fmt.number(maxLength - value.length) }}
       </div>
       <slot name="inline"></slot>

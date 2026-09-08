@@ -8,6 +8,8 @@
   <div class="relative min-h-screen overflow-hidden">
     <app-background />
 
+    <app-theme-toggle floating />
+
     <div class="relative min-h-screen flex items-center justify-center px-4 py-10">
       <div class="max-w-md w-full space-y-8">
         <div class="flex flex-col items-center">

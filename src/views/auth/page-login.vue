@@ -20,7 +20,8 @@
 <template>
   <app-card
     title="Masuk ke Akun"
-    description="Silakan masukkan kredensial Anda">
+    description="Silakan masukkan kredensial Anda"
+    :hover="false">
     <form
       class="space-y-4"
       @submit.prevent="submit">
@@ -57,10 +58,10 @@
 
       <div class="relative">
         <div class="absolute inset-0 flex items-center">
-          <div class="w-full border-t border-slate-200"></div>
+          <div class="w-full border-t border-slate-200 dark:border-white/10"></div>
         </div>
         <div class="relative flex justify-center text-sm">
-          <span class="bg-white px-2 text-slate-500">
+          <span class="bg-white px-2 text-slate-500 dark:bg-surface dark:text-white">
             atau
           </span>
         </div>
@@ -76,7 +77,7 @@
         Masuk dengan GitHub
       </app-button>
 
-      <p class="text-center text-sm text-slate-600">
+      <p class="text-center text-sm text-slate-600 dark:text-gray-400">
         Belum punya akun?
         <a
           href="#"

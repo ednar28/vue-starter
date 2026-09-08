@@ -7,8 +7,6 @@ export const useCarousel = {
   },
 }
 
-export { AppCarousel }
-
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     AppCarousel: typeof AppCarousel,

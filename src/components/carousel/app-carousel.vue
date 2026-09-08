@@ -162,8 +162,7 @@
               </div>
               <button
                 v-if="zoomable && item.type === 'image'"
-                class="absolute right-3 top-3 size-8 flex cursor-zoom-in items-center justify-center rounded-full bg-black/40 text-white backdrop-blur-sm"
-                @click="handleClickItem(idx)">
+                class="pointer-events-none absolute right-3 top-3 size-8 flex items-center justify-center rounded-full bg-black/40 text-white backdrop-blur-sm">
                 <app-icon
                   icon="lucide:expand"
                   class="size-3.5" />

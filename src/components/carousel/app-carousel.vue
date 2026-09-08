@@ -160,34 +160,35 @@
                   {{ item.caption }}
                 </p>
               </div>
-              <div
+              <button
                 v-if="zoomable && item.type === 'image'"
-                class="pointer-events-none absolute right-3 top-3 rounded-full bg-black/40 p-1.5 text-white backdrop-blur-sm">
+                class="absolute right-3 top-3 size-8 flex cursor-zoom-in items-center justify-center rounded-full bg-black/40 text-white backdrop-blur-sm"
+                @click="handleClickItem(idx)">
                 <app-icon
                   icon="lucide:expand"
-                  class="h-3.5 w-3.5" />
-              </div>
+                  class="size-3.5" />
+              </button>
             </div>
           </slot>
         </div>
 
         <template v-if="showArrows && normalizedItems.length > 1">
-          <div class="absolute inset-y-0 left-0 z-20 flex items-center pl-2">
+          <div class="pointer-events-none absolute inset-y-0 left-0 z-10 flex items-center pl-2">
             <app-button
               type="icon"
               variant="secondary"
-              class="backdrop-blur-sm !bg-white/90 !text-gray-700 hover:!bg-white"
+              class="pointer-events-initial backdrop-blur-sm !bg-white/90 !text-gray-700 hover:!bg-white"
               :disabled="!canPrev"
               aria-label="Sebelumnya"
               @click.stop="prev">
               <app-icon icon="lucide:chevron-left" />
             </app-button>
           </div>
-          <div class="absolute inset-y-0 right-0 z-20 flex items-center pr-2">
+          <div class="pointer-events-none absolute inset-y-0 right-0 z-10 flex items-center pr-2">
             <app-button
               type="icon"
               variant="secondary"
-              class="backdrop-blur-sm !bg-white/90 !text-gray-700 hover:!bg-white"
+              class="pointer-events-initial backdrop-blur-sm !bg-white/90 !text-gray-700 hover:!bg-white"
               :disabled="!canNext"
               aria-label="Berikutnya"
               @click.stop="next">

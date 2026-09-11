@@ -90,7 +90,7 @@ export const useApi = () => {
       throw new NotFoundException()
     },
     validationFailed: (errors: FormError) => {
-      toast.add('Terdapat kesalahan pada data yang dikirim')
+      toast.warning('Terdapat kesalahan pada data yang dikirim')
       setTimeout(() => {
         const errorMessage = document.querySelector('.error-message')
         errorMessage?.scrollIntoView({ behavior: 'smooth' })
@@ -98,13 +98,13 @@ export const useApi = () => {
       throw new ValidationErrorException(errors)
     },
     tooManyRequest: () => {
-      toast.add('Terlalu banyak melakukan request, tunggu beberapa menit sebelum mencoba kembali')
+      toast.warning('Terlalu banyak melakukan request', 'Tunggu sebentar')
     },
     internalServerError: () => {
-      toast.add('Error pada sisi server, akan segera kami perbaiki')
+      toast.danger('Error pada sisi server', 'Akan segera kami perbaiki')
     },
     networkError: () => {
-      toast.add('Tidak terhubung dengan internet')
+      toast.danger('Tidak terhubung dengan internet')
     },
   }
 

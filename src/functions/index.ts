@@ -56,9 +56,9 @@ export const copy = async (text: string) => {
   const toast = useToastStore()
   try {
     await Copy(text)
-    toast.add('Teks telah disalin')
+    toast.success('Teks telah disalin')
   } catch (error) {
-    toast.add('Gagal menyalin teks')
+    toast.danger('Gagal menyalin teks')
     console.log(error)
   }
 }

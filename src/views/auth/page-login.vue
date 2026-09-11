@@ -11,7 +11,7 @@
   const submit = async () => {
     const response = await login()
     if (response) {
-      toast.add('Berhasil login, tunggu sebentar')
+      toast.success('Berhasil login, tunggu sebentar')
       router.replace({ name: 'introduction' })
     }
   }

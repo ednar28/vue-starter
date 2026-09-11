@@ -1,6 +1,5 @@
 <script setup lang="ts">
   import AppCarouselThumbs from './app-carousel-thumbs.vue'
-  import type { CarouselItemNormalized } from './carousel.types'
   import { useCarouselZoom } from './composables/use-carousel-zoom'
 
   const props = defineProps<{

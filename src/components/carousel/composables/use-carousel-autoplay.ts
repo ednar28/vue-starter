@@ -1,19 +1,29 @@
 import { onBeforeUnmount, onMounted, ref, watch } from 'vue'
-import type { CarouselProps } from '../carousel.types'
 
-export function useCarouselAutoplay (
-  props: Readonly<CarouselProps>,
+export const useCarouselAutoplay = (
+  props: {
+    autoplay?: boolean,
+    interval?: number,
+    loop?: boolean,
+  },
   ctx: {
     normalizedLength: () => number,
     canNext: () => boolean,
     isLightboxOpen: () => boolean,
     next: () => void,
   },
-) {
+) => {
   let timer: ReturnType<typeof setInterval> | null = null
   const isHovering = ref(false)
 
-  function start () {
+  const stop = () => {
+    if (timer) {
+      clearInterval(timer)
+      timer = null
+    }
+  }
+
+  const start = () => {
     stop()
     if (!props.autoplay) return
     if (ctx.normalizedLength() <= 1) return
@@ -23,13 +33,6 @@ export function useCarouselAutoplay (
       if (!ctx.canNext() && !props.loop) return
       ctx.next()
     }, props.interval)
-  }
-
-  function stop () {
-    if (timer) {
-      clearInterval(timer)
-      timer = null
-    }
   }
 
   watch(() => [props.autoplay, props.interval, props.loop, ctx.normalizedLength()] as const, start)

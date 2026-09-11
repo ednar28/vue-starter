@@ -1,18 +1,26 @@
 import { computed, ref, watch } from 'vue'
-import type { CarouselItemNormalized, CarouselProps } from '../carousel.types'
-import { normalizeItems } from '../carousel.types'
+import { normalizeItems } from '../carousel-utils'
 
-export interface CarouselStateCallbacks {
-  onUpdate?: (value: number) => void,
-  onChange?: (value: number, item: CarouselItemNormalized) => void,
-}
-
-export function useCarouselState (
-  props: Readonly<CarouselProps>,
-  callbacks: CarouselStateCallbacks = {},
-) {
+export const useCarouselState = (
+  props: {
+    items: (string | CarouselItem)[],
+    modelValue?: number,
+    loop?: boolean,
+  },
+  callbacks: {
+    onUpdate?: (value: number) => void,
+    onChange?: (value: number, item: CarouselItemNormalized) => void,
+  },
+) => {
   const normalizedItems = computed(() => normalizeItems(props.items))
   const currentIndex = ref(props.modelValue ?? 0)
+
+  const clampIndex = (i: number) => {
+    const len = normalizedItems.value.length
+    if (len === 0) return 0
+    if (props.loop) return ((i % len) + len) % len
+    return Math.max(0, Math.min(i, len - 1))
+  }
 
   watch(() => props.modelValue, (v) => {
     if (v !== undefined && v !== currentIndex.value) {
@@ -26,22 +34,16 @@ export function useCarouselState (
     if (item) callbacks.onChange?.(v, item)
   })
 
-  function clampIndex (i: number) {
-    const len = normalizedItems.value.length
-    if (len === 0) return 0
-    if (props.loop) return ((i % len) + len) % len
-    return Math.max(0, Math.min(i, len - 1))
-  }
-
-  function goTo (index: number) {
+  const goTo = (index: number) => {
     if (normalizedItems.value.length === 0) return
     currentIndex.value = clampIndex(index)
   }
 
-  function next () {
+  const next = () => {
     goTo(currentIndex.value + 1)
   }
-  function prev () {
+
+  const prev = () => {
     goTo(currentIndex.value - 1)
   }
 
@@ -65,7 +67,6 @@ export function useCarouselState (
     normalizedItems,
     currentIndex,
     currentItem,
-    clampIndex,
     goTo,
     next,
     prev,

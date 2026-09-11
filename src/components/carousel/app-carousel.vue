@@ -3,12 +3,24 @@
   import { useDocumentOverflow } from '@/functions'
   import AppCarouselLightbox from './app-carousel-lightbox.vue'
   import AppCarouselThumbs from './app-carousel-thumbs.vue'
-  import type { CarouselEmit, CarouselProps } from './carousel.types'
   import { useCarouselAutoplay } from './composables/use-carousel-autoplay'
   import { useCarouselState } from './composables/use-carousel-state'
   import { useCarouselSwipe } from './composables/use-carousel-swipe'
 
-  const props = withDefaults(defineProps<CarouselProps>(), {
+  const props = withDefaults(defineProps<{
+    items: (string | CarouselItem)[],
+    modelValue?: number,
+    autoplay?: boolean,
+    interval?: number,
+    loop?: boolean,
+    showArrows?: boolean,
+    showIndicators?: boolean,
+    showThumbs?: boolean,
+    zoomable?: boolean,
+    aspectRatio?: string,
+    height?: string,
+    objectFit?: 'cover' | 'contain',
+  }>(), {
     modelValue: 0,
     autoplay: false,
     interval: 3000,
@@ -22,7 +34,10 @@
     objectFit: 'cover',
   })
 
-  const emit = defineEmits<CarouselEmit>()
+  const emit = defineEmits<{
+    (e: 'update:modelValue', value: number): void,
+    (e: 'change', value: number, item: CarouselItemNormalized): void,
+  }>()
 
   const {
     normalizedItems,
@@ -151,8 +166,7 @@
                 controls
                 preload="metadata"
                 class="size-full"
-                :class="objectFitClass"
-                @click.stop></video>
+                :class="objectFitClass"></video>
               <div
                 v-if="item.caption"
                 class="pointer-events-none absolute inset-x-0 bottom-0 from-black/60 via-black/20 to-transparent bg-gradient-to-t p-3 pt-8">
@@ -179,7 +193,7 @@
               class="pointer-events-initial backdrop-blur-sm !bg-white/90 !text-gray-700 hover:!bg-white"
               :disabled="!canPrev"
               aria-label="Sebelumnya"
-              @click.stop="prev">
+              @click="prev">
               <app-icon icon="lucide:chevron-left" />
             </app-button>
           </div>
@@ -190,7 +204,7 @@
               class="pointer-events-initial backdrop-blur-sm !bg-white/90 !text-gray-700 hover:!bg-white"
               :disabled="!canNext"
               aria-label="Berikutnya"
-              @click.stop="next">
+              @click="next">
               <app-icon icon="lucide:chevron-right" />
             </app-button>
           </div>
@@ -207,7 +221,7 @@
             :class="idx === currentIndex ? 'w-6 bg-white' : 'w-1.5 bg-white/60 hover:bg-white/90'"
             :aria-label="`Ke slide ${idx + 1}`"
             :aria-current="idx === currentIndex"
-            @click.stop="handleGoTo(idx)"></button>
+            @click="handleGoTo(idx)"></button>
         </div>
       </template>
     </div>

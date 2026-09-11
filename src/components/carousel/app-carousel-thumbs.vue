@@ -1,5 +1,4 @@
 <script setup lang="ts">
-  import type { CarouselItemNormalized } from './carousel.types'
 
   defineProps<{
     items: CarouselItemNormalized[],

@@ -3,6 +3,7 @@
   import SectionProd from './plugins/prod/section-prod.vue'
   import SectionComponents from './sections/section-components.vue'
   import SectionFunctions from './sections/section-functions.vue'
+  import SectionGettingStarted from './sections/section-getting-started.vue'
 </script>
 
 <template>
@@ -12,6 +13,7 @@
       badge="Vue Starter Kit"
       description="Kumpulan komponen Vue reusable untuk membangun antarmuka web dengan cepat dan konsisten." />
 
+    <section-getting-started />
     <section-components />
     <section-functions />
   </div>

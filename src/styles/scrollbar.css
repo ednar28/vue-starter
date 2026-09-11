@@ -6,15 +6,15 @@
 }
 
 /* ---------- Firefox ---------- */
-/* Firefox hanya support `scrollbar-width` + `scrollbar-color`, */
-/* tidak support ::-webkit-scrollbar / border-radius / ukuran px. */
+/* Firefox only supports `scrollbar-width` + `scrollbar-color`, */
+/* does not support ::-webkit-scrollbar / border-radius / px sizes. */
 * {
   scrollbar-width: thin;
   scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
 }
 
 /* ---------- Chromium / Safari / Edge ---------- */
-/* Otomatis thin untuk semua scrollbar, tanpa class manual. */
+/* Automatically thin for all scrollbars, no manual class needed. */
 ::-webkit-scrollbar {
   width: 8px;
   height: 6px;
@@ -47,7 +47,7 @@
   background: transparent;
 }
 
-/* ---------- Utility: hidden (tetap bisa scroll) ---------- */
+/* ---------- Utility: hidden (still scrollable) ---------- */
 .scrollbar-none {
   scrollbar-width: none;
   -ms-overflow-style: none;
@@ -57,7 +57,7 @@
   display: none;
 }
 
-/* ---------- Utility: dark (sidebar gelap) ---------- */
+/* ---------- Utility: dark (dark sidebar) ---------- */
 .scrollbar-dark {
   scrollbar-width: thin;
   scrollbar-color: rgb(255 255 255 / 0.16) transparent;

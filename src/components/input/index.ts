@@ -3,7 +3,6 @@ import AppInput from './app-input.vue'
 import AppInputAutocomplete from './app-input-autocomplete.vue'
 import AppInputCheckbox from './app-input-checkbox.vue'
 import AppInputDate from './app-input-date.vue'
-import AppInputDatepicker from './app-input-datepicker.vue'
 import AppInputErrorMessage from './app-input-error-message.vue'
 import AppInputFile from './app-input-file.vue'
 import AppInputImage from './app-input-image.vue'
@@ -13,11 +12,14 @@ import AppInputPassword from './app-input-password.vue'
 import AppInputSearch from './app-input-search.vue'
 import AppInputSelect from './app-input-select.vue'
 import AppInputTel from './app-input-tel.vue'
+import AppInputDatepicker from './datepicker/app-input-datepicker.vue'
+import AppInputDaterange from './datepicker/app-input-daterange.vue'
 
 export const useInput = {
   install (app: App) {
     app.component('AppInputCheckbox', AppInputCheckbox)
     app.component('AppInputDate', AppInputDate)
+    app.component('AppInputDaterange', AppInputDaterange)
     app.component('AppInputDatepicker', AppInputDatepicker)
     app.component('AppInputErrorMessage', AppInputErrorMessage)
     app.component('AppInputFile', AppInputFile)
@@ -37,6 +39,7 @@ declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     AppInputCheckbox: typeof AppInputCheckbox,
     AppInputDate: typeof AppInputDate,
+    AppInputDaterange: typeof AppInputDaterange,
     AppInputDatepicker: typeof AppInputDatepicker,
     AppInputErrorMessage: typeof AppInputErrorMessage,
     AppInputFile: typeof AppInputFile,

@@ -27,5 +27,8 @@ coverage
 
 *.tsbuildinfo
 
+# Bundle analysis
+stats.html
+
 # Bun
 bun.lockb

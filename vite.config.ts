@@ -2,6 +2,7 @@ import { fileURLToPath, URL } from 'node:url'
 import vue from '@vitejs/plugin-vue'
 import autoprefixer from 'autoprefixer'
 import postcssNested from 'postcss-nested'
+import { visualizer } from 'rollup-plugin-visualizer'
 import UnoCSS from 'unocss/vite'
 import { defineConfig, loadEnv, UserConfig } from 'vite'
 import { vitePWA } from './pwa.config.ts'
@@ -12,6 +13,7 @@ export default defineConfig(({ mode }): UserConfig => {
   const appVersion = JSON.stringify(process.env.npm_package_version)
   const appName = JSON.stringify(process.env.VITE_APP_TITLE)
   const host = process.env.VITE_SERVER_HOST ?? 'localhost'
+  const enableAnalyzer = process.env.VITE_ANALYZE === 'true'
 
   return {
     css: {
@@ -23,6 +25,13 @@ export default defineConfig(({ mode }): UserConfig => {
       vue(),
       UnoCSS(),
       vitePWA(host, appVersion, ''),
+      visualizer({
+        filename: 'stats.html',
+        open: enableAnalyzer,
+        gzipSize: true,
+        brotliSize: true,
+        template: 'treemap',
+      }),
     ],
     define: {
       __APP_VERSION__: appVersion,
@@ -42,6 +51,7 @@ export default defineConfig(({ mode }): UserConfig => {
     build: {
       sourcemap: true,
       outDir: buildOutDir(mode, process.env.npm_package_version),
+      chunkSizeWarningLimit: 1000,
     },
     resolve: {
       alias: {

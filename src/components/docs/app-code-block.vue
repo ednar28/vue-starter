@@ -1,7 +1,9 @@
 <script setup lang="ts">
-  import VCodeBlock from '@wdns/vue-code-block'
+  import { defineAsyncComponent } from 'vue'
 
   const { code } = defineProps<{ code: string }>()
+
+  const VCodeBlock = defineAsyncComponent(() => import('@wdns/vue-code-block'))
 </script>
 
 <template>

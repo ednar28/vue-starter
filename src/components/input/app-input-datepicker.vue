@@ -1,10 +1,11 @@
 <script setup lang="ts">
   import '@vuepic/vue-datepicker/dist/main.css'
-  import { VueDatePicker } from '@vuepic/vue-datepicker'
   import { nanoid } from 'nanoid'
-  import { computed } from 'vue'
+  import { computed, defineAsyncComponent } from 'vue'
   import AppInputLabel from '@/components/input/app-input-label.vue'
   import { fmt } from '@/functions'
+
+  const VueDatePicker = defineAsyncComponent(() => import('@vuepic/vue-datepicker').then(m => m.VueDatePicker))
 
   const props = defineProps<{
     id?: string,

@@ -9,7 +9,7 @@
 <template>
   <div
     :class="[
-      'mx-auto overflow-hidden rounded-[22px] border shadow-sm transition-all duration-300',
+      'mx-auto rounded-[22px] border shadow-sm transition-all duration-300',
       activeDevice === 'desktop' ? 'max-w-4xl' : '',
       activeDevice === 'tablet' ? 'max-w-md' : '',
       activeDevice === 'mobile' ? 'max-w-sm' : '',

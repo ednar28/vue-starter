@@ -47,35 +47,6 @@
   background: transparent;
 }
 
-/* ---------- Alias: .scrollbar-thin ---------- */
-/* Tidak wajib dipakai lagi karena global sudah thin. */
-/* Disimpan agar kode lama yang masih pakai class ini tidak rusak. */
-.scrollbar-thin {
-  scrollbar-width: thin;
-  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
-}
-
-.scrollbar-thin::-webkit-scrollbar {
-  width: 8px;
-  height: 6px;
-}
-
-.scrollbar-thin::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.scrollbar-thin::-webkit-scrollbar-thumb {
-  background: var(--scrollbar-thumb);
-  border-radius: 9999px;
-  border: 2px solid transparent;
-  background-clip: content-box;
-}
-
-.scrollbar-thin::-webkit-scrollbar-thumb:hover {
-  background: var(--scrollbar-thumb-hover);
-  background-clip: content-box;
-}
-
 /* ---------- Utility: hidden (tetap bisa scroll) ---------- */
 .scrollbar-none {
   scrollbar-width: none;

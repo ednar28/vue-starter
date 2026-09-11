@@ -13,7 +13,6 @@
   import PluginVMoney3 from './plugin-v-money3.vue'
   import PluginVue from './plugin-vue.vue'
   import PluginVueCodeBlock from './plugin-vue-code-block.vue'
-  import PluginVueDatepicker from './plugin-vue-datepicker.vue'
   import PluginVueuse from './plugin-vueuse.vue'
 </script>
 
@@ -31,7 +30,6 @@
     <plugin-dompurify />
     <plugin-cropperjs />
     <plugin-vue-code-block />
-    <plugin-vue-datepicker />
     <plugin-nprogress />
     <plugin-clipboard-copy />
     <plugin-v-money3 />

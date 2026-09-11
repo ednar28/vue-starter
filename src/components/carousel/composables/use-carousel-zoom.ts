@@ -1,7 +1,6 @@
 import { ref } from 'vue'
-import type { CarouselItemNormalized } from '../carousel.types'
 
-export function useCarouselZoom (getCurrentItem: () => CarouselItemNormalized) {
+export const useCarouselZoom = (getCurrentItem: () => CarouselItemNormalized) => {
   const scale = ref(1)
   const translateX = ref(0)
   const translateY = ref(0)
@@ -12,11 +11,11 @@ export function useCarouselZoom (getCurrentItem: () => CarouselItemNormalized) {
   let startTranslateX = 0
   let startTranslateY = 0
 
-  function zoomIn () {
+  const zoomIn = () => {
     scale.value = Math.min(3, +(scale.value + 0.25).toFixed(2))
   }
 
-  function zoomOut () {
+  const zoomOut = () => {
     scale.value = Math.max(1, +(scale.value - 0.25).toFixed(2))
     if (scale.value === 1) {
       translateX.value = 0
@@ -24,19 +23,19 @@ export function useCarouselZoom (getCurrentItem: () => CarouselItemNormalized) {
     }
   }
 
-  function reset () {
+  const reset = () => {
     scale.value = 1
     translateX.value = 0
     translateY.value = 0
   }
 
-  function onWheel (e: WheelEvent) {
+  const onWheel = (e: WheelEvent) => {
     if (getCurrentItem().type === 'video') return
     if (e.deltaY < 0) zoomIn()
     else zoomOut()
   }
 
-  function onDragStart (e: PointerEvent) {
+  const onDragStart = (e: PointerEvent) => {
     if (scale.value <= 1) return
     if (getCurrentItem().type === 'video') return
     isDragging.value = true
@@ -47,7 +46,7 @@ export function useCarouselZoom (getCurrentItem: () => CarouselItemNormalized) {
     ;(e.target as Element).setPointerCapture?.(e.pointerId)
   }
 
-  function onDragMove (e: PointerEvent) {
+  const onDragMove = (e: PointerEvent) => {
     if (!isDragging.value) return
     const dx = (e.clientX - dragStartX) / scale.value
     const dy = (e.clientY - dragStartY) / scale.value
@@ -55,7 +54,7 @@ export function useCarouselZoom (getCurrentItem: () => CarouselItemNormalized) {
     translateY.value = startTranslateY + dy
   }
 
-  function onDragEnd () {
+  const onDragEnd = () => {
     isDragging.value = false
   }
 

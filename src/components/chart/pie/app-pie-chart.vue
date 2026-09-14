@@ -5,47 +5,26 @@
   type PieDonutType = 'pie' | 'donut'
 
   interface BaseProps {
-    /** Series nilai pie, mis: [44, 55, 13, 43]. */
     series: number[],
-    /** Label untuk tiap nilai, mis: ['Tim A','Tim B','Tim C','Tim D']. */
     labels?: string[],
-    /** Tipe chart. Default 'donut'. */
     type?: PieDonutType,
-    /** Warna palette. Default palette UnoCSS primary/secondary/amber. */
     colors?: string[],
-    /** Tinggi container (px). Default 320. */
     height?: number,
-    /** Lebar container. Default '100%'. */
     width?: string | number,
-    /** Tampilkan legend. Default true. */
     legend?: boolean,
-    /** Posisi legend. Default 'bottom'. */
     legendPosition?: 'top' | 'bottom' | 'left' | 'right',
-    /** Offset legend (margin). Default 0. */
     legendOffsetX?: number,
-    /** Font size legend. Default 13. */
     legendFontSize?: number,
-    /** Tampilkan label total di tengah (donut). Default true. */
     total?: boolean,
-    /** Label custom untuk total. Default 'Total'. */
     totalLabel?: string,
-    /** Format angka total, mis: (v) => v + ' unit'. Default ribuan (x,xxx). */
     totalFormatter?: (value: number) => string,
-    /** Format angka tooltip, mis: (v) => 'Rp ' + v.toLocaleString(). Default follow locale. */
     tooltipFormatter?: (value: number) => string,
-    /** Format angka label (data labels). Default auto. */
     dataLabelFormatter?: (value: number) => string,
-    /** Tampilkan data labels (persentase). Default true. */
     dataLabels?: boolean,
-    /** Donut hole size (0-100). Default 65. */
     donutSize?: string | number,
-    /** Stroke line cap. Default 'round'. */
     strokeCurve?: 'smooth' | 'straight' | 'stepline' | 'round',
-    /** Chart animation enabled. Default true. */
     animation?: boolean,
-    /** Offset (px) antar slice. Default 2. */
     strokeWidth?: number,
-    /** Custom ApexCharts options override (deep merged last). */
     options?: Record<string, unknown>,
   }
 
@@ -72,7 +51,6 @@
     strokeWidth: 2,
   })
 
-  // Default palette aligned with UnoCSS theme tokens.
   const DEFAULT_COLORS = ['#F97316', '#0ea5e9', '#f59e0b', '#10b981', '#8b5cf6', '#ec4899', '#64748b', '#f43f5e']
 
   const fmtThousands = (n: number): string => new Intl.NumberFormat('id-ID').format(n)
@@ -179,7 +157,6 @@
       ],
     }
 
-    // Merge custom options last (deep-ish, one level shallow merge for nested keys we know).
     if (props.options) {
       const custom = { ...props.options }
       for (const key of Object.keys(custom)) {
@@ -196,17 +173,15 @@
     return base
   })
 
-  // Snapshot options — only re-evaluated when renderKey changes
-  // This prevents vue3-apexcharts' internal watcher from firing on every reactive change
-  // (which would JSON.stringify the options and strip all formatter functions)
+  // Snapshot options. Only re-evaluated on full re-render so the
+  // vue3-apexcharts options watcher (which strips functions via
+  // JSON.stringify) does not fire on every reactive change.
   const optionsSnapshot = computed(() => {
-    // Depend on renderKey so it only re-evaluates on full re-render
     void renderKey.value
     return buildOptions.value
   })
 
-  // Manual update that preserves functions (vue3-apexcharts' internal updateOptions uses JSON.stringify
-  // which strips functions, causing "Cannot read properties of undefined (reading 'labels')" errors)
+  // Manual update that preserves formatter functions.
   const manualUpdate = async () => {
     await nextTick()
     if (!chartRef.value) return
@@ -218,7 +193,7 @@
     }
   }
 
-  // Watch for prop changes — update chart manually (not via reactive :options prop to avoid JSON.stringify)
+  // Update the chart manually to keep formatter functions intact.
   watch(
     () => [props.series, props.labels, props.colors, props.type] as const,
     () => {
@@ -232,9 +207,7 @@
   })
 
   defineExpose({
-    /** Access underlying VueApexCharts instance. */
     chart: chartRef,
-    /** Force re-render. */
     rerender: () => {
       renderKey.value++
     },

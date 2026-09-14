@@ -3,56 +3,32 @@
   import VueApexCharts from 'vue3-apexcharts'
 
   interface BarSeries {
-    /** Nama series, mis: 'Penjualan'. */
     name: string,
-    /** Data points, mis: [44, 55, 13, 43, 22]. */
     data: number[],
   }
 
   interface BaseProps {
-    /** Series data. Format: [{ name: 'Penjualan', data: [44, 55, 13] }]. */
     series: BarSeries[],
-    /** Kategori untuk sumbu X, mis: ['Produk A', 'Produk B']. */
     categories?: string[],
-    /** Warna palette. Default palette UnoCSS primary/secondary/amber. */
     colors?: string[],
-    /** Tinggi container (px). Default 320. */
     height?: number,
-    /** Lebar container. Default '100%'. */
     width?: string | number,
-    /** Tampilkan legend. Default true. */
     legend?: boolean,
-    /** Posisi legend. Default 'bottom'. */
     legendPosition?: 'top' | 'bottom' | 'left' | 'right',
-    /** Offset legend (margin). Default 0. */
     legendOffsetX?: number,
-    /** Font size legend. Default 13. */
     legendFontSize?: number,
-    /** Tampilkan data labels (angka di atas bar). Default false. */
     dataLabels?: boolean,
-    /** Orientasi bar: 'horizontal' atau 'vertical'. Default 'vertical'. */
     orientation?: 'horizontal' | 'vertical',
-    /** Ketebalan corner radius bar (px). Default 4. */
     borderRadius?: number,
-    /** Lebar bar dalam persen (0-100). Default 80. */
     barWidth?: number,
-    /** Jenis bar: 'bar' atau 'stacked'. Default 'bar'. */
     barType?: 'bar' | 'stacked',
-    /** Chart animation enabled. Default true. */
     animation?: boolean,
-    /** Tampilkan grid lines. Default true. */
     grid?: boolean,
-    /** Tampilkan toolbar (zoom, download, dll). Default false. */
     toolbar?: boolean,
-    /** Format angka tooltip, mis: (v) => 'Rp ' + v.toLocaleString(). Default follow locale. */
     tooltipFormatter?: (value: number) => string,
-    /** Format angka sumbu (X untuk horizontal, Y untuk vertical). Default follow locale. */
     axisFormatter?: (value: number) => string,
-    /** Format label kategori. Default return as-is. */
     categoryFormatter?: (value: string) => string,
-    /** Tampilkan axis dari 0. Default true. */
     axisFromZero?: boolean,
-    /** Custom ApexCharts options override (deep merged last). */
     options?: Record<string, unknown>,
   }
 
@@ -80,7 +56,6 @@
     axisFromZero: true,
   })
 
-  // Default palette aligned with UnoCSS theme tokens.
   const DEFAULT_COLORS = ['#F97316', '#0ea5e9', '#f59e0b', '#10b981', '#8b5cf6', '#ec4899', '#64748b', '#f43f5e']
 
   const fmtThousands = (n: number): string => new Intl.NumberFormat('id-ID').format(n)
@@ -191,7 +166,6 @@
       ],
     }
 
-    // Merge custom user options
     if (props.options) {
       const custom = { ...props.options }
       for (const key of Object.keys(custom)) {
@@ -208,13 +182,15 @@
     return base
   })
 
-  // Snapshot options — only re-evaluated when renderKey changes
+  // Snapshot options. Only re-evaluated on full re-render so the
+  // vue3-apexcharts options watcher (which strips functions via
+  // JSON.stringify) does not fire on every reactive change.
   const optionsSnapshot = computed(() => {
     void renderKey.value
     return buildOptions.value
   })
 
-  // Manual update that preserves functions
+  // Manual update that preserves formatter functions.
   const manualUpdate = async () => {
     await nextTick()
     if (!chartRef.value) return
@@ -226,7 +202,7 @@
     }
   }
 
-  // Watch for prop changes
+  // Update the chart manually to keep formatter functions intact.
   watch(
     () => [props.series, props.categories, props.colors, props.orientation] as const,
     () => {
@@ -240,9 +216,7 @@
   })
 
   defineExpose({
-    /** Access underlying VueApexCharts instance. */
     chart: chartRef,
-    /** Force re-render. */
     rerender: () => {
       renderKey.value++
     },

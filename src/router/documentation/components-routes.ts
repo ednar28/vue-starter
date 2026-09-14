@@ -78,6 +78,21 @@ const componentsRoutes: RouteRecordRaw[] = [
     name: 'documentation-carousel',
     component: () => import('@/views/documentation/components/carousel/page-carousel.vue'),
   },
+  {
+    path: 'pie',
+    name: 'documentation-pie',
+    component: () => import('@/views/documentation/components/pie/page-pie.vue'),
+  },
+  {
+    path: 'line',
+    name: 'documentation-line',
+    component: () => import('@/views/documentation/components/line/page-line.vue'),
+  },
+  {
+    path: 'bar',
+    name: 'documentation-bar',
+    component: () => import('@/views/documentation/components/bar/page-bar.vue'),
+  },
 ]
 
 export { componentsRoutes }

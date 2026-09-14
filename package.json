@@ -19,6 +19,7 @@
     "@vueuse/core": "^14.4.0",
     "@vueuse/integrations": "^14.4.0",
     "@wdns/vue-code-block": "^2.3.5",
+    "apexcharts": "^7.3.0",
     "axios": "^1.19.0",
     "change-case": "^5.4.4",
     "clipboard-copy": "^4.0.1",
@@ -32,7 +33,8 @@
     "pretty-bytes": "^7.1.1",
     "v-money3": "^3.26.1",
     "vue": "^3.5.40",
-    "vue-router": "^5.2.0"
+    "vue-router": "^5.2.0",
+    "vue3-apexcharts": "^1.11.1"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",

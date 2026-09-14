@@ -1,228 +1,299 @@
 <script setup lang="ts">
   import { computed, ref } from 'vue'
-  import { useAppModal } from '@/components/modal'
+  import { AppBarChart } from '@/components/chart/bar'
+  import { AppLineChart } from '@/components/chart/line'
+  import { AppPieChart } from '@/components/chart/pie'
 
-  const activeTab = ref('All')
-  const { open: openModal, close: closeModal } = useAppModal('modal')
-  const searchQuery = ref('')
+  type Period = '7H' | '30H' | '12B'
 
-  const stats = [
-    { label: 'Total Pengguna', value: '12,543', change: '+12%', icon: 'lucide:users', trend: 'up' },
-    { label: 'Pendapatan', value: 'Rp 45.2jt', change: '+8%', icon: 'lucide:wallet', trend: 'up' },
-    { label: 'Pesanan Baru', value: '342', change: '+23%', icon: 'lucide:shopping-bag', trend: 'up' },
-    { label: 'Tiket Support', value: '18', change: '-5%', icon: 'lucide:headphones', trend: 'down' },
+  const activePeriod = ref<Period>('30H')
+
+  const periodTabs = [
+    { value: '7H', label: '7 Hari' },
+    { value: '30H', label: '30 Hari' },
+    { value: '12B', label: '12 Bulan' },
   ]
 
-  const tableColumns = [
-    { key: 'name', label: 'Nama', class: 'text-left' },
-    { key: 'role', label: 'Role', class: 'text-center w-px whitespace-nowrap' },
-    { key: 'status', label: 'Status', class: 'text-center' },
-    { key: 'lastActive', label: 'Terakhir Aktif', class: 'text-left' },
-  ]
+  const formatRpFull = (v: number): string => 'Rp ' + Math.round(v).toLocaleString('id-ID')
 
-  const tableRows = computed(() => {
+  const formatRpShort = (v: number): string => {
+    if (v >= 1_000_000_000) return `Rp ${(v / 1_000_000_000).toLocaleString('id-ID', { maximumFractionDigits: 1 })} M`
+    if (v >= 1_000_000) return `Rp ${(v / 1_000_000).toLocaleString('id-ID', { maximumFractionDigits: 1 })} jt`
+    if (v >= 1_000) return `Rp ${(v / 1_000).toLocaleString('id-ID', { maximumFractionDigits: 1 })} rb`
+    return `Rp ${v}`
+  }
+
+  const revenueData: Record<Period, { categories: string[], pendapatan: number[], pengeluaran: number[] }> = {
+    '7H': {
+      categories: ['Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab', 'Min'],
+      pendapatan: [4200000, 5100000, 3800000, 6200000, 7800000, 9400000, 8100000],
+      pengeluaran: [2100000, 2400000, 2000000, 2800000, 3100000, 3600000, 3200000],
+    },
+    '30H': {
+      categories: ['W1', 'W2', 'W3', 'W4'],
+      pendapatan: [28400000, 32100000, 29600000, 38200000],
+      pengeluaran: [12200000, 13800000, 12900000, 15400000],
+    },
+    '12B': {
+      categories: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'],
+      pendapatan: [82000000, 76000000, 94000000, 88000000, 102000000, 118000000, 128000000, 121000000, 110000000, 124000000, 138000000, 152000000],
+      pengeluaran: [41000000, 38000000, 44000000, 42000000, 48000000, 54000000, 58000000, 56000000, 51000000, 56000000, 61000000, 68000000],
+    },
+  }
+
+  const revenueCategories = computed(() => revenueData[activePeriod.value].categories)
+
+  const revenueSeries = computed(() => [
+    { name: 'Pendapatan', data: revenueData[activePeriod.value].pendapatan },
+    { name: 'Pengeluaran', data: revenueData[activePeriod.value].pengeluaran },
+  ])
+
+  const categoryLabels = ['Minuman', 'Makanan', 'Merchandise', 'Lainnya']
+  const categorySeries = [74200000, 34800000, 8600000, 4100000]
+
+  const productCategories = ['Kopi Susu', 'Matcha', 'Croissant', 'Roti Bakar', 'Teh']
+
+  const productData: Record<Period, number[]> = {
+    '7H': [182, 140, 96, 88, 64],
+    '30H': [720, 540, 410, 380, 290],
+    '12B': [8200, 6400, 5100, 4700, 3500],
+  }
+
+  const productSeries = computed(() => [
+    { name: 'Terjual', data: productData[activePeriod.value] },
+  ])
+
+  const stats = computed(() => {
+    if (activePeriod.value === '7H') {
+      return [
+        { label: 'Pendapatan', value: 'Rp 44,6 jt', change: '+12,4%', trend: 'up' as const, icon: 'lucide:wallet', iconClass: 'bg-primary/10 text-primary dark:bg-primary/15' },
+        { label: 'Total Pesanan', value: '1.284', change: '+8,1%', trend: 'up' as const, icon: 'lucide:shopping-bag', iconClass: 'bg-sky-500/10 text-sky-600 dark:text-sky-400' },
+        { label: 'Rata-rata Order', value: 'Rp 34,7 rb', change: '+3,2%', trend: 'up' as const, icon: 'lucide:receipt-text', iconClass: 'bg-violet-500/10 text-violet-600 dark:text-violet-400' },
+        { label: 'Pesanan Batal', value: '26', change: '-5,4%', trend: 'down' as const, icon: 'lucide:rotate-ccw', iconClass: 'bg-rose-500/10 text-rose-600 dark:text-rose-400' },
+      ]
+    }
+    if (activePeriod.value === '12B') {
+      return [
+        { label: 'Pendapatan', value: 'Rp 1,33 M', change: '+18,7%', trend: 'up' as const, icon: 'lucide:wallet', iconClass: 'bg-primary/10 text-primary dark:bg-primary/15' },
+        { label: 'Total Pesanan', value: '38.412', change: '+14,2%', trend: 'up' as const, icon: 'lucide:shopping-bag', iconClass: 'bg-sky-500/10 text-sky-600 dark:text-sky-400' },
+        { label: 'Rata-rata Order', value: 'Rp 34,6 rb', change: '+4,1%', trend: 'up' as const, icon: 'lucide:receipt-text', iconClass: 'bg-violet-500/10 text-violet-600 dark:text-violet-400' },
+        { label: 'Pesanan Batal', value: '412', change: '-2,8%', trend: 'down' as const, icon: 'lucide:rotate-ccw', iconClass: 'bg-rose-500/10 text-rose-600 dark:text-rose-400' },
+      ]
+    }
     return [
-      { name: 'Andi Pratama', role: 'Admin', status: 'Active', lastActive: '2 menit lalu' },
-      { name: 'Siti Nurhaliza', role: 'Editor', status: 'Active', lastActive: '15 menit lalu' },
-      { name: 'Budi Santoso', role: 'Author', status: 'Inactive', lastActive: '3 hari lalu' },
-      { name: 'Rina Wulandari', role: 'Viewer', status: 'Active', lastActive: '1 jam lalu' },
-      { name: 'Dedi Kurniawan', role: 'Admin', status: 'Active', lastActive: '5 menit lalu' },
-    ].filter(row => {
-      if (activeTab.value === 'All') return true
-      if (activeTab.value === 'Active') return row.status === 'Active'
-      if (activeTab.value === 'Inactive') return row.status === 'Inactive'
-      return true
-    })
+      { label: 'Pendapatan', value: 'Rp 128,3 jt', change: '+15,9%', trend: 'up' as const, icon: 'lucide:wallet', iconClass: 'bg-primary/10 text-primary dark:bg-primary/15' },
+      { label: 'Total Pesanan', value: '3.692', change: '+11,3%', trend: 'up' as const, icon: 'lucide:shopping-bag', iconClass: 'bg-sky-500/10 text-sky-600 dark:text-sky-400' },
+      { label: 'Rata-rata Order', value: 'Rp 34,8 rb', change: '+3,9%', trend: 'up' as const, icon: 'lucide:receipt-text', iconClass: 'bg-violet-500/10 text-violet-600 dark:text-violet-400' },
+      { label: 'Pesanan Batal', value: '98', change: '-4,6%', trend: 'down' as const, icon: 'lucide:rotate-ccw', iconClass: 'bg-rose-500/10 text-rose-600 dark:text-rose-400' },
+    ]
   })
 
-  const recentActivities = [
-    { user: 'Andi Pratama', action: 'Menambah produk baru', time: '2 menit lalu', icon: 'lucide:package-plus' },
-    { user: 'Siti Nurhaliza', action: 'Mengedit artikel "Tips Vue.js"', time: '15 menit lalu', icon: 'lucide:pencil' },
-    { user: 'Rina Wulandari', action: 'Mengunggah 12 gambar', time: '1 jam lalu', icon: 'lucide:upload' },
-    { user: 'Dedi Kurniawan', action: 'Mereset password pengguna', time: '5 menit lalu', icon: 'lucide:key-round' },
+  const topProducts = [
+    { name: 'Kopi Susu Gula Aren', category: 'Minuman', sold: 720, revenue: 'Rp 18,0 jt', pct: 100 },
+    { name: 'Matcha Latte', category: 'Minuman', sold: 540, revenue: 'Rp 16,2 jt', pct: 75 },
+    { name: 'Croissant Butter', category: 'Makanan', sold: 410, revenue: 'Rp 9,4 jt', pct: 57 },
+    { name: 'Roti Bakar Cokelat', category: 'Makanan', sold: 380, revenue: 'Rp 6,8 jt', pct: 53 },
+    { name: 'Teh Melati', category: 'Minuman', sold: 290, revenue: 'Rp 4,3 jt', pct: 40 },
   ]
 
-  const quickStats = [
-    { label: 'Produk', value: '1,234', icon: 'lucide:box' },
-    { label: 'Kategori', value: '48', icon: 'lucide:folder-tree' },
-    { label: 'Tag', value: '156', icon: 'lucide:tags' },
+  type TxnStatus = 'Lunas' | 'Pending' | 'Batal'
+
+  const transactions: { id: string, customer: string, method: string, total: number, status: TxnStatus }[] = [
+    { id: 'TRX-9041', customer: 'PT Maju Jaya', method: 'Transfer', total: 4850000, status: 'Lunas' },
+    { id: 'TRX-9040', customer: 'Toko Berkah', method: 'QRIS', total: 1275000, status: 'Lunas' },
+    { id: 'TRX-9039', customer: 'CV Sinar Abadi', method: 'Transfer', total: 8920000, status: 'Pending' },
+    { id: 'TRX-9038', customer: 'Andi Pratama', method: 'QRIS', total: 185000, status: 'Lunas' },
+    { id: 'TRX-9037', customer: 'UD Sumber Rezeki', method: 'Tunai', total: 2340000, status: 'Batal' },
+    { id: 'TRX-9036', customer: 'Siti Nurhaliza', method: 'QRIS', total: 320000, status: 'Lunas' },
+    { id: 'TRX-9035', customer: 'PT Karya Digital', method: 'Transfer', total: 6750000, status: 'Pending' },
   ]
 
-  const tabs = [
-    { value: 'All', label: 'Semua' },
-    { value: 'Active', label: 'Aktif' },
-    { value: 'Inactive', label: 'Nonaktif' },
+  const activeStatus = ref('Semua')
+
+  const statusTabs = [
+    { value: 'Semua', label: 'Semua' },
+    { value: 'Lunas', label: 'Lunas' },
+    { value: 'Pending', label: 'Pending' },
+    { value: 'Batal', label: 'Batal' },
   ]
+
+  const transactionColumns = [
+    { key: 'id', label: 'ID Transaksi', class: 'text-left whitespace-nowrap' },
+    { key: 'customer', label: 'Pelanggan', class: 'text-left' },
+    { key: 'method', label: 'Metode', class: 'text-center whitespace-nowrap' },
+    { key: 'total', label: 'Total', class: 'text-right whitespace-nowrap' },
+    { key: 'status', label: 'Status', class: 'text-center' },
+  ]
+
+  const filteredTransactions = computed(() => {
+    if (activeStatus.value === 'Semua') return transactions
+    return transactions.filter(t => t.status === activeStatus.value)
+  })
+
+  const statusVariant = (status: TxnStatus): 'success' | 'warning' | 'danger' => {
+    if (status === 'Lunas') return 'success'
+    if (status === 'Pending') return 'warning'
+    return 'danger'
+  }
 </script>
 
 <template>
   <div class="space-y-6">
-    <div class="flex items-center justify-between">
+    <div class="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
       <div>
-        <h1 class="text-3xl font-bold">
-          Dashboard
+        <h1 class="text-3xl text-gray-900 font-bold dark:text-white">
+          Dashboard Bisnis
         </h1>
-        <p class="mt-1 text-slate-600">
-          Selamat datang kembali! Berikut ringkasan aktivitas Anda.
+        <p class="mt-1 text-sm text-slate-500 dark:text-gray-400">
+          Pantau pendapatan, pesanan, dan performa produk dalam satu tempat.
         </p>
       </div>
-
-      <app-button @click="openModal">
-        <app-icon
-          icon="lucide:plus"
-          class="mr-2 h-4 w-4" />
-        Tambah Baru
-      </app-button>
+      <app-tab
+        v-model="activePeriod"
+        :tabs="periodTabs" />
     </div>
 
     <div class="grid gap-4 lg:grid-cols-4 sm:grid-cols-2">
       <app-card
         v-for="stat in stats"
         :key="stat.label"
-        class="p-4">
-        <div class="flex items-start justify-between">
+        :hover="false">
+        <div class="flex items-start justify-between gap-3">
           <div>
-            <p class="text-sm text-slate-500">
+            <p class="text-sm text-slate-500 dark:text-gray-400">
               {{ stat.label }}
             </p>
-            <p class="mt-1 text-2xl font-bold">
+            <p class="mt-1 text-2xl text-gray-900 font-bold dark:text-white">
               {{ stat.value }}
             </p>
           </div>
           <div
-            :class="[
-              'rounded-full size-10 flex items-center justify-center',
-              stat.trend === 'up' ? 'bg-emerald-100 text-emerald-600' : 'bg-red-100 text-red-600',
-            ]">
+            class="size-10 flex shrink-0 items-center justify-center rounded-xl"
+            :class="stat.iconClass">
             <app-icon
               :icon="stat.icon"
               class="size-5" />
           </div>
         </div>
-        <div class="mt-3 flex items-center gap-1 text-sm">
+        <div class="mt-3 flex items-center gap-1.5 text-sm">
           <app-icon
             :icon="stat.trend === 'up' ? 'lucide:trending-up' : 'lucide:trending-down'"
-            class="h-4 w-4" />
-          <span :class="stat.trend === 'up' ? 'text-emerald-600' : 'text-red-600'">
+            class="h-4 w-4"
+            :class="stat.trend === 'up' ? 'text-emerald-600 dark:text-emerald-400' : 'text-rose-600 dark:text-rose-400'" />
+          <span
+            class="font-semibold"
+            :class="stat.trend === 'up' ? 'text-emerald-600 dark:text-emerald-400' : 'text-rose-600 dark:text-rose-400'">
             {{ stat.change }}
           </span>
-          <span class="text-slate-400">vs bulan lalu</span>
+          <span class="text-slate-400 dark:text-gray-500">vs periode lalu</span>
         </div>
       </app-card>
     </div>
 
     <div class="grid gap-6 lg:grid-cols-3">
       <app-card
-        title="Total Item"
-        class="lg:col-span-1">
-        <div class="space-y-4">
-          <div
-            v-for="item in quickStats"
-            :key="item.label"
-            class="flex items-center justify-between border border-gray-200/70 rounded-lg bg-slate-50 p-3 dark:border-white/10 dark:bg-black/20">
-            <div class="flex items-center gap-3">
-              <div class="rounded-lg bg-primary/10 p-2">
-                <app-icon
-                  :icon="item.icon"
-                  class="h-5 w-5 text-primary" />
-              </div>
-              <span class="text-sm text-gray-800 font-medium dark:text-gray-100">{{ item.label }}</span>
-            </div>
-            <span class="text-lg text-gray-900 font-bold dark:text-white">{{ item.value }}</span>
-          </div>
-        </div>
+        title="Tren Pendapatan"
+        description="Pendapatan vs pengeluaran pada periode berjalan."
+        class="lg:col-span-2">
+        <app-line-chart
+          :series="revenueSeries"
+          :categories="revenueCategories"
+          :colors="['#F97316', '#0ea5e9']"
+          :tooltip-formatter="formatRpFull"
+          :y-formatter="formatRpShort"
+          legend-position="top"
+          :height="300" />
       </app-card>
 
       <app-card
-        title="Aktivitas Terbaru"
+        title="Komposisi Omzet"
+        description="Kontribusi tiap kategori terhadap total omzet.">
+        <app-pie-chart
+          :series="categorySeries"
+          :labels="categoryLabels"
+          type="donut"
+          total-label="Omzet"
+          :total-formatter="formatRpShort"
+          :tooltip-formatter="formatRpFull"
+          :data-labels="false"
+          :height="300" />
+      </app-card>
+    </div>
+
+    <div class="grid gap-6 lg:grid-cols-3">
+      <app-card
+        title="Penjualan per Produk"
+        description="Jumlah unit terjual untuk tiap produk unggulan."
         class="lg:col-span-2">
+        <app-bar-chart
+          :series="productSeries"
+          :categories="productCategories"
+          :colors="['#F97316']"
+          :height="300"
+          :border-radius="6" />
+      </app-card>
+
+      <app-card
+        title="Produk Terlaris"
+        description="Peringkat produk berdasarkan unit terjual.">
         <div class="space-y-4">
           <div
-            v-for="(activity, idx) in recentActivities"
-            :key="idx"
-            class="flex items-start gap-3">
-            <div class="mt-0.5 size-10 flex items-center justify-center rounded-full bg-slate-100 dark:bg-white/10">
-              <app-icon
-                :icon="activity.icon"
-                class="size-4 text-slate-600 dark:text-gray-300" />
+            v-for="(product, idx) in topProducts"
+            :key="product.name">
+            <div class="flex items-center justify-between gap-2">
+              <div class="min-w-0 flex items-center gap-3">
+                <span class="w-5 shrink-0 text-sm text-slate-400 font-bold dark:text-gray-500">
+                  {{ idx + 1 }}
+                </span>
+                <div class="min-w-0">
+                  <p class="truncate text-sm text-gray-900 font-semibold dark:text-white">
+                    {{ product.name }}
+                  </p>
+                  <p class="text-xs text-slate-400 dark:text-gray-500">
+                    {{ product.category }} · {{ product.sold }} terjual
+                  </p>
+                </div>
+              </div>
+              <span class="shrink-0 text-xs text-slate-500 font-semibold dark:text-gray-400">
+                {{ product.revenue }}
+              </span>
             </div>
-            <div class="flex-1">
-              <p class="text-sm">
-                <span class="font-medium">{{ activity.user }}</span>
-                {{ ' ' }}{{ activity.action }}
-              </p>
-              <p class="mt-0.5 text-xs text-slate-400">
-                {{ activity.time }}
-              </p>
+            <div class="ml-8 mt-2 h-1.5 overflow-hidden rounded-full bg-slate-100 dark:bg-white/10">
+              <div
+                class="h-full rounded-full bg-primary transition-all"
+                :style="{ width: `${product.pct}%` }"></div>
             </div>
-            <app-badge
-              :label="activity.time.split(' ')[0]"
-              variant="info"
-              :icon="true" />
           </div>
         </div>
       </app-card>
     </div>
 
     <div class="space-y-4">
-      <div class="flex items-center justify-between">
-        <h2 class="text-xl font-semibold">
-          Daftar Pengguna
+      <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+        <h2 class="text-xl text-gray-900 font-semibold dark:text-white">
+          Transaksi Terbaru
         </h2>
         <app-tab
-          v-model="activeTab"
-          :tabs="tabs" />
+          v-model="activeStatus"
+          :tabs="statusTabs" />
       </div>
 
-      <app-card>
+      <app-card :hover="false">
         <app-table
-          :columns="tableColumns"
-          :rows="tableRows">
+          :columns="transactionColumns"
+          :rows="filteredTransactions"
+          empty-message="Tidak ada transaksi pada filter ini">
+          <template #cell-total="{ value }">
+            <span class="font-semibold">{{ formatRpFull(value as number) }}</span>
+          </template>
           <template #cell-status="{ value }">
             <app-badge
-              :label="value"
-              :variant="value === 'Active' ? 'success' : 'warning'"
+              :label="value as string"
+              :variant="statusVariant(value as TxnStatus)"
               :icon="true" />
-          </template>
-          <template #cell-role="{ value }">
-            <app-badge
-              :label="value"
-              :variant="value === 'Admin' ? 'primary' : value === 'Editor' ? 'info' : 'warning'" />
           </template>
         </app-table>
       </app-card>
     </div>
-
-    <app-modal
-      ref="modal"
-      title="Tambah Data Baru">
-      <app-modal-content>
-        <div class="space-y-4">
-          <app-input
-            v-model="searchQuery"
-            v-focus
-            label="Judul"
-            placeholder="Masukkan judul" />
-          <app-input
-            v-model="searchQuery"
-            label="Deskripsi"
-            type="textarea"
-            placeholder="Masukkan deskripsi" />
-          <app-input-search placeholder="Cari data..." />
-        </div>
-      </app-modal-content>
-      <app-modal-footer>
-        <app-button
-          variant="info"
-          @click="closeModal">
-          Batal
-        </app-button>
-        <app-button
-          variant="primary"
-          @click="closeModal">
-          Simpan
-        </app-button>
-      </app-modal-footer>
-    </app-modal>
   </div>
 </template>

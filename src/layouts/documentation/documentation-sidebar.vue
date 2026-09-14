@@ -1,5 +1,6 @@
 <script setup lang="ts">
   import SidebarLayout from '@/components/layout/sidebar/sidebar-layout.vue'
+  import charts from './sidebar/charts'
   import components from './sidebar/components'
   import functions from './sidebar/functions'
   import gettingStarted from './sidebar/getting-started'
@@ -17,6 +18,7 @@
   const navItems = [
     gettingStarted,
     components,
+    charts,
     stores,
     functions,
   ]
